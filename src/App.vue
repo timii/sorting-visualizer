@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-    <main>Add overview over all available algorithms here</main>
+    <router-view></router-view>
 </template>
 
 <style scoped></style>
