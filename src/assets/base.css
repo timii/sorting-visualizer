@@ -30,3 +30,8 @@
     font-family: "Open Sans";
     /* line-height: 1.6; */
 }
+
+html {
+    background-color: var(--black);
+    color: var(--white);
+}

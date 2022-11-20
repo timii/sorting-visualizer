@@ -27,12 +27,9 @@ main {
     align-items: center;
     height: 100vh;
     gap: 50px;
-    background-color: var(--black);
-    color: var(--white);
 }
 
 main > div {
-    /* border: 1px solid grey; */
     height: 60vh;
     width: 45vw;
 }
@@ -42,11 +39,6 @@ main > div {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    /* gap: 10px; */
-}
-
-.introduction > div {
-    /* border: 1px solid green; */
 }
 
 .welcome-text,
