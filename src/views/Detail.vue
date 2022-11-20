@@ -5,6 +5,7 @@ console.log("algos:", algorithms);
 
 export default {
     computed: {
+        // find current algorithm using its name
         currentAlgorithm() {
             const name = capitalizeFirstLetter(this.$route.params.name);
             console.log("name:", name, algorithms);
@@ -28,11 +29,7 @@ export default {
 
 <template>
     <div>detail page for {{ currentAlgorithm.name }} works</div>
-    <div>
-        <!-- Testing out -> name: {{ name }}, desc: {{ desc }}, runFunc: -->
-        <!-- {{ runFunc }} -->
-    </div>
-    <router-view></router-view>
+    <div>call function test: {{ currentAlgorithm.runSort() }}</div>
 </template>
 
 <style scoped></style>

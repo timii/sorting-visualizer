@@ -11,7 +11,6 @@ import { algorithms } from "../model/algorithms.ts";
             </router-link>
         </div>
     </div>
-    <router-view></router-view>
 </template>
 
 <style scoped></style>
