@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import AlgorithmList from "../components/AlgorithmList.vue";
+import HomeDiagram from "../components/HomeDiagram.vue";
 </script>
 
 <template>
@@ -12,7 +13,9 @@ import AlgorithmList from "../components/AlgorithmList.vue";
                     work
                 </div>
             </div>
-            <div class="diagram-animation">animated diagram</div>
+            <div class="diagram-container">
+                <HomeDiagram></HomeDiagram>
+            </div>
         </div>
         <div class="sort-overview">
             <AlgorithmList></AlgorithmList>
@@ -42,7 +45,7 @@ main > div {
 }
 
 .welcome-text,
-.diagram-animation {
+.diagram-container {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
