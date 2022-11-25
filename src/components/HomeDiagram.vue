@@ -1,8 +1,9 @@
 <script lang="ts">
+import { createArray } from "../utils/util.ts";
 export default {
     data() {
         return {
-            testArray: [1, 5, 7, 9, 13, 25, 46, 57, 79, 89, 100, 115, 160],
+            testArray: createArray(100),
         };
     },
     methods: {
