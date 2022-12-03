@@ -9,8 +9,9 @@
     --black-soft: #222222;
     --black-mute: #282828;
 
-    --grey: rgba(235, 235, 235, 0.6);
-    --grey-transparent: rgba(235, 235, 235, 0);
+    --grey: #7a7a7a;
+    --grey-darker: #262626;
+    --grey-transparent: #7a7a7a00;
 
     --orange: #dd6718;
 

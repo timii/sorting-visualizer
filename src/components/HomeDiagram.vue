@@ -64,11 +64,8 @@ export default {
                 v-for="(number, i) in testArray"
                 :style="{
                     height: getHeightAsPercentage(number) + '%',
-                    // width: 'calc(' + barWidth + '% - ' + testArray.length + 'px)',
                     width: barWidth + '%',
                     backgroundColor: getBarColor(number),
-                    // left: i * barWidth + '%',
-                    // marginLeft: i * 1 + 'px'
                 }"
             ></div>
         </div>
@@ -77,9 +74,11 @@ export default {
 
 <style scoped>
 .diagram {
-    border: 1px solid green;
     width: 25vw;
     height: 20vh;
+    background-color: var(--grey-darker);
+    border-radius: 5px;
+    padding: 25px;
 }
 
 .bars {
@@ -91,10 +90,6 @@ export default {
 }
 
 .bar {
-    /* height: 25px; */
-    /* width: 5px; */
     background-color: red;
-    /* transition: all 2s; */
-    /* position: absolute; */
 }
 </style>
