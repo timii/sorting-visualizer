@@ -9,9 +9,22 @@
     --black-soft: #222222;
     --black-mute: #282828;
 
+    --grey: rgba(235, 235, 235, 0.6);
+    --grey-transparent: rgba(235, 235, 235, 0);
+
     --orange: #dd6718;
 
     --text-light: var(--orange);
+
+    --divider-gradient: linear-gradient(
+        0deg,
+        var(--grey-transparent) 0%,
+        var(--grey-transparent) 20%,
+        var(--grey) 50%,
+        var(--grey-transparent) 80%,
+        var(--grey-transparent) 100%
+    );
+
     /* --dark-sienna: #370617; */
     /* --rosewood: #6a040f; */
     /* --dark-red: #9d0208; */
