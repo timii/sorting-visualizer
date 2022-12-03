@@ -6,17 +6,20 @@ import HomeDiagram from "../components/HomeDiagram.vue";
 <template>
     <main>
         <div class="introduction">
-            <div class="welcome-text">
-                <div class="welcome-text-title">Sorting Visualizer</div>
-                <div class="welcome-text-subtitle">
-                    Visually learn different sorting algorithms and how they
-                    work
+            <div>
+                <div class="welcome-text">
+                    <div class="welcome-text-title">Sorting Visualizer</div>
+                    <div class="welcome-text-subtitle">
+                        Visually learn different sorting algorithms and how they
+                        work
+                    </div>
+                </div>
+                <div class="diagram-container">
+                    <HomeDiagram></HomeDiagram>
                 </div>
             </div>
-            <div class="diagram-container">
-                <HomeDiagram></HomeDiagram>
-            </div>
         </div>
+        <div class="divider"></div>
         <div class="sort-overview">
             <AlgorithmList></AlgorithmList>
         </div>
@@ -29,7 +32,7 @@ main {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    gap: 50px;
+    gap: 25px;
 }
 
 main > div {
@@ -37,11 +40,25 @@ main > div {
     width: 45vw;
 }
 
+.divider {
+    width: 1px;
+    /* background-color: var(--white-mute); */
+    background: var(--divider-gradient);
+}
+
 .introduction,
 .sort-overview {
     display: flex;
     flex-direction: column;
     justify-content: center;
+}
+
+.introduction {
+    margin-top: 200px;
+}
+
+.welcome-text {
+    margin-bottom: 25px;
 }
 
 .welcome-text,
@@ -61,6 +78,6 @@ main > div {
 
 .welcome-text-subtitle {
     font-size: 1.2rem;
-    color: rgba(235, 235, 235, 0.64);
+    color: var(--grey);
 }
 </style>

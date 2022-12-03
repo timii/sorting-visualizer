@@ -15,12 +15,12 @@ export default {
             const highestNum = Math.max(...this.testArray);
             return (num * 100) / highestNum;
         },
-        getBarColor(index: number) {
-            console.log("index:", index, this.randomEl1, this.randomEl2,
-                index === this.randomEl1 && this.randomEl2 )
-            if (index === this.randomEl1) return 'green'
-            else if (index === this.randomEl2) return 'green'
-            else return 'red'
+        getBarColor(value: number) {
+            return 'rgba(' + this.getHeightAsRGBValue(value) + ', 255, 255, 1)'
+        },
+        getHeightAsRGBValue(num: number) {
+            const highestNum = Math.max(...this.testArray);
+            return (num * 255) / highestNum
         },
         setTwoRandomElements() {
             // console.log("setTwoRandomElements")
@@ -46,15 +46,18 @@ export default {
     },
     unmounted() {
         console.log("unmounted")
-        clearIntervall(this.intervall)
+        clearInterval(this.intervall)
     }
 };
 </script>
 
 <template>
-    <div class="diagram" :style="{
-        // width: 'calc(25vw + ' + testArray.length + 'px)'
-    }">
+    <div
+        class="diagram"
+        :style="{
+            // width: 'calc(25vw + ' + testArray.length + 'px)'
+        }"
+    >
         <div class="bars">
             <div
                 class="bar"
@@ -63,7 +66,7 @@ export default {
                     height: getHeightAsPercentage(number) + '%',
                     // width: 'calc(' + barWidth + '% - ' + testArray.length + 'px)',
                     width: barWidth + '%',
-                    backgroundColor: getBarColor(i),
+                    backgroundColor: getBarColor(number),
                     // left: i * barWidth + '%',
                     // marginLeft: i * 1 + 'px'
                 }"
