@@ -1,5 +1,9 @@
 <script lang="ts">
-import { createArray, swapRandomElements, getRandomNumber } from "../utils/util.ts";
+import {
+    createArray,
+    swapRandomElements,
+    getRandomNumber,
+} from "../utils/util.ts";
 export default {
     data() {
         return {
@@ -7,29 +11,41 @@ export default {
             intervall: null,
             randomEl1: 2,
             randomEl2: 4,
-        }
+            highestNum: 0,
+        };
     },
     methods: {
         // get current numbers height as a percentage
         getHeightAsPercentage(num: number) {
-            const highestNum = Math.max(...this.testArray);
-            return (num * 100) / highestNum;
+            return (num * 100) / this.highestNum;
         },
+
+        // return calculated rgb string to element
         getBarColor(value: number) {
-            return 'rgba(' + this.getHeightAsRGBValue(value) + ', 255, 255, 1)'
+            return (
+                "rgba(" +
+                this.getRGBValue(value, 221) +
+                "," +
+                this.getRGBValue(value, 103) +
+                "," +
+                this.getRGBValue(value, 24) +
+                ", 1)"
+            );
         },
-        getHeightAsRGBValue(num: number) {
-            const highestNum = Math.max(...this.testArray);
-            return (num * 255) / highestNum
+        // calculate correct bar color using its index
+        getRGBValue(num: number, minValue: number) {
+            return minValue + (num * (255 - minValue)) / this.highestNum;
         },
+
+        // set two random elements that will be swapped next
         setTwoRandomElements() {
             // console.log("setTwoRandomElements")
-            this.randomEl1 = getRandomNumber(0, this.testArray.length)
-            this.randomEl2 = getRandomNumber(0, this.testArray.length)
+            this.randomEl1 = getRandomNumber(0, this.testArray.length);
+            this.randomEl2 = getRandomNumber(0, this.testArray.length);
             while (this.randomEl2 === this.randomEl1) {
-                this.randomEl2 = getRandomNumber(0, this.testArray.length)
+                this.randomEl2 = getRandomNumber(0, this.testArray.length);
             }
-        }
+        },
     },
     computed: {
         barWidth() {
@@ -37,17 +53,22 @@ export default {
         },
     },
     mounted() {
-        console.log("mounted")
-        this.setTwoRandomElements()
+        console.log("mounted");
+        this.highestNum = Math.max(...this.testArray);
+        this.setTwoRandomElements();
         this.intervall = setInterval(() => {
-            this.testArray = swapRandomElements(this.testArray, this.randomEl1, this.randomEl2);
-            this.setTwoRandomElements()
+            this.testArray = swapRandomElements(
+                this.testArray,
+                this.randomEl1,
+                this.randomEl2
+            );
+            this.setTwoRandomElements();
         }, 2000);
     },
     unmounted() {
-        console.log("unmounted")
-        clearInterval(this.intervall)
-    }
+        console.log("unmounted");
+        clearInterval(this.intervall);
+    },
 };
 </script>
 
