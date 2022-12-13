@@ -6,14 +6,35 @@ export const algorithms: IAlgorithmComplexity[] = [
         name: "logarithmic",
         algoList: [
             {
-                name: "Quicksort",
+                name: "Quick Sort",
                 description: "testDesc",
                 runSort: quicksort,
+            },
+            {
+                name: "Merge Sort",
+                description: "testDesc2",
+            },
+            {
+                name: "Heap Sort",
+                description: "testDesc3",
             },
         ],
     },
     {
         name: "quadratic",
-        algoList: [],
+        algoList: [
+            {
+                name: "Bubble Sort",
+                description: "testDesc4",
+            },
+            {
+                name: "Selection Sort",
+                description: "testDesc5",
+            },
+            {
+                name: "Insertion Sort",
+                description: "testDesc6",
+            },
+        ],
     },
 ];
