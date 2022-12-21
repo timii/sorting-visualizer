@@ -49,3 +49,8 @@ html {
     background-color: var(--black);
     color: var(--white);
 }
+
+a {
+    text-decoration: none;
+    color: var(--white-mute);
+}
