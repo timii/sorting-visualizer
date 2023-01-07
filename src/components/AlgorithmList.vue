@@ -8,9 +8,8 @@ import { algorithms } from "../model/algorithms.ts";
             {{ complexity.name }}
         </div>
         <div v-for="alg in complexity.algoList" class="algo">
-            <span class="algo-arrow">arrow </span>
             <router-link :to="'/' + alg.name.toLowerCase()">
-                {{ alg.name }} - {{ alg.description }}
+                {{ alg.name }}
             </router-link>
         </div>
     </div>
@@ -22,36 +21,42 @@ import { algorithms } from "../model/algorithms.ts";
 }
 
 .algo-type {
-    font-size: 24px;
+    font-size: 28px;
     margin-bottom: 5px;
     text-transform: capitalize;
-    /* text-decoration: underline var(--orange); */
     color: var(--text-light);
 }
 
 .algo {
-    margin-left: 20px;
+    margin-left: 30px;
     margin-bottom: 2px;
+    font-size: 20px;
     display: flex;
     width: fit-content;
-    /* text-decoration: none; */
-    /* transition: all 1s ease-in-out; */
-}
-
-.algo-arrow {
-    color: transparent;
 }
 
 .algo > a {
     text-decoration: underline transparent;
     transition: all 0.1s ease-in-out;
+    display: inline-block;
+    position: relative;
 }
 
-.algo:hover > a {
-    text-decoration: underline var(--text-light) 1.5px;
+.algo > a:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--text-light);
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.3s;
 }
 
-.algo:hover > .algo-arrow {
-    color: white;
+.algo:hover > a:after {
+    transform-origin: bottom left;
+    transform: scaleX(1);
 }
 </style>

@@ -69,7 +69,7 @@ main > div {
 }
 
 .welcome-text-title {
-    font-size: 2.6rem;
+    font-size: 48px;
     font-weight: 500;
     color: var(--text-light);
     /* text-decoration-color: #dd6718; */
@@ -77,7 +77,7 @@ main > div {
 }
 
 .welcome-text-subtitle {
-    font-size: 1.2rem;
+    font-size: 18px;
     color: var(--grey);
 }
 </style>
