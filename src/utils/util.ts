@@ -3,6 +3,17 @@ export function capitalizeFirstLetter(s: string): string {
     return s.charAt(0).toUpperCase() + s.slice(1);
 }
 
+// Function that capitalizes all first letters of a string
+export function capitalizeAllFirstLetters(s: string): string {
+    const words = s.split(" ");
+    let returnString = "";
+    words.forEach(
+        (w, i) =>
+            (returnString += (i === 0 ? "" : " ") + capitalizeFirstLetter(w))
+    );
+    return returnString;
+}
+
 // Function that creates an array of unique numbers up to n
 export function createArray(n: number): number[] {
     const arr: number[] = [];
