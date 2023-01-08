@@ -14,6 +14,11 @@ export default {
             highestNum: 0,
         };
     },
+
+    // ----
+    // Component Methods
+    // ----
+
     methods: {
         // get current numbers height as a percentage
         getHeightAsPercentage(num: number) {

@@ -1,9 +1,13 @@
 <script lang="ts">
 import { algorithms } from "../model/algorithms.ts";
 import { capitalizeAllFirstLetters } from "../utils/util.ts";
+import DetailDiagram from "../components/DetailDiagram.vue";
 // console.log("algos:", algorithms);
 
 export default {
+    components: {
+        DetailDiagram,
+    },
     computed: {
         // find current algorithm using its name
         currentAlgorithm() {
@@ -30,7 +34,9 @@ export default {
 <template>
     <main>
         <div class="detail-title">{{ currentAlgorithm.name }}</div>
-        <div class="diagram-container">diagram container</div>
+        <div class="diagram-container">
+            <DetailDiagram></DetailDiagram>
+        </div>
         <div class="description-container">
             description text
             <div>detail page for {{ currentAlgorithm.name }} works</div>
