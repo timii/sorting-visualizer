@@ -1,3 +1,4 @@
+import { bubblesort } from "@/sorts/bubblesort";
 import { quicksort } from "@/sorts/quicksort";
 import type { IAlgorithmComplexity } from "./interfaces";
 
@@ -26,6 +27,7 @@ export const algorithms: IAlgorithmComplexity[] = [
             {
                 name: "Bubble Sort",
                 description: "testDesc4",
+                runSort: bubblesort,
             },
             {
                 name: "Selection Sort",
