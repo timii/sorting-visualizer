@@ -4,6 +4,7 @@ import {
     swapRandomElements,
     getRandomNumber,
 } from "../utils/util.ts";
+import {setArray, setRunning} from "../sorts/quicksort.ts";
 export default {
     data() {
         return {
@@ -63,11 +64,13 @@ export default {
         // handle start button click
         startClicked() {
             console.log("start clicked")
+            setRunning(true)
         },
 
         // handle stop button click
         stopClicked() {
             console.log("stop clicked")
+            setRunning(false)
         }
     },
 
@@ -75,6 +78,7 @@ export default {
     // Lifecycle Methods
     // ----
     mounted() {
+        setArray(this.testArray)
         this.highestNum = Math.max(...this.testArray);
         // this.setTwoRandomElements();
         // set intervall to continuously swap two random elements
