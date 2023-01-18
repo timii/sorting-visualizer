@@ -4,16 +4,24 @@ import {
     swapRandomElements,
     getRandomNumber,
 } from "../utils/util.ts";
-import {setArray, setRunning} from "../sorts/quicksort.ts";
 export default {
     data() {
         return {
-            testArray: createArray(50),
+            startArray: createArray(5),
+            algorithmSteps: [],
+            currentStep: [],
+            currentStepIndex: 0,
             intervall: null,
             randomEl1: 2,
             randomEl2: 4,
             highestNum: 0,
         };
+    },
+
+    props: {
+        algorithmFunction: {
+            type: Function
+        }
     },
 
     // ----
@@ -47,30 +55,19 @@ export default {
             );
         },
 
-        // set two random elements that will be swapped next
-        // setTwoRandomElements() {
-        //     this.randomEl1 = getRandomNumber(0, this.testArray.length);
-        //     this.randomEl2 = getRandomNumber(0, this.testArray.length);
-        //     while (this.randomEl2 === this.randomEl1) {
-        //         this.randomEl2 = getRandomNumber(0, this.testArray.length);
-        //     }
-        // },
-
         // calculate width of each bar
         barWidth() {
-            return 100 / this.testArray.length;
+            return 100 / this.startArray.length;
         },
 
         // handle start button click
         startClicked() {
             console.log("start clicked")
-            setRunning(true)
         },
 
         // handle stop button click
         stopClicked() {
             console.log("stop clicked")
-            setRunning(false)
         }
     },
 
@@ -78,22 +75,26 @@ export default {
     // Lifecycle Methods
     // ----
     mounted() {
-        setArray(this.testArray)
-        this.highestNum = Math.max(...this.testArray);
-        // this.setTwoRandomElements();
-        // set intervall to continuously swap two random elements
-        // this.intervall = setInterval(() => {
-        //     this.testArray = swapRandomElements(
-        //         this.testArray,
-        //         this.randomEl1,
-        //         this.randomEl2
-        //     );
-        //     this.setTwoRandomElements();
-        // }, 2000);
+        console.log("currentAlgo:", this.algorithmFunction)
+        this.algorithmSteps = this.algorithmFunction(this.startArray)
+        this.currentStep = this.algorithmSteps[0];
+        this.currentStepIndex += 1;
+        console.log("algorithmSteps:",this.algorithmSteps, "currentStep:", this.currentStep)
+        this.highestNum = Math.max(...this.startArray);
+
+        // set intervall to continuously go through each algorithm p
+        this.intervall = setInterval(() => {
+            if (this.algorithmSteps[this.currentStepIndex]) {
+                this.currentStep = this.algorithmSteps[this.currentStepIndex]
+                this.currentStepIndex += 1;
+            } else {
+                clearInterval(this.intervall)
+            }
+        }, 2000);
     },
     unmounted() {
         console.log("unmounted");
-        // clearInterval(this.intervall);
+        clearInterval(this.intervall);
     },
 };
 </script>
@@ -104,7 +105,7 @@ export default {
             <div class="bars">
                 <div
                     class="bar"
-                    v-for="(number, i) in testArray"
+                    v-for="(number, i) in currentStep"
                     :style="{
                         height: getHeightAsPercentage(number) + '%',
                         width: barWidth() + '%',
