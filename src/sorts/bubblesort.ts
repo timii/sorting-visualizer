@@ -3,14 +3,12 @@ export function bubblesort(arr: number[]): number[][] {
     let arrayOfSteps = [];
     if (arr && arr.length > 2) {
         arrayOfSteps.push([...arr]);
-        for (let i = 0; i < arr.length - 1; i++) {
-            for (let j = 1; j < arr.length; j++) {
-                console.log("arr[i]:", arr[i], "arr[j]:", arr[j]);
-                if (arr[j] > arr[i]) {
+        for (let i = 1; i < arr.length; i++) {
+            for (let j = 0; j < arr.length - 1; j++) {
+                if (arr[j] > arr[j + 1]) {
                     let temp = arr[j];
-                    arr[j] = arr[i];
-                    arr[i] = temp;
-                    console.log("bigger -> arr:", arr);
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
                     arrayOfSteps.push([...arr]);
                 }
             }
@@ -19,5 +17,4 @@ export function bubblesort(arr: number[]): number[][] {
         return [arr];
     }
     return arrayOfSteps;
-    // return [2, 21, 2, 4, 2, 4, 6, 4, 7, 4, 3];
 }
