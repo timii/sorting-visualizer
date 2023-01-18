@@ -35,7 +35,7 @@ export default {
     <main>
         <div class="detail-title">{{ currentAlgorithm.name }}</div>
         <div class="diagram-container">
-            <DetailDiagram></DetailDiagram>
+            <DetailDiagram :algorithmFunction=currentAlgorithm.runSort></DetailDiagram>
         </div>
         <div class="description-container">
             description text
