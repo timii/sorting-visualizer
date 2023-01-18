@@ -7,7 +7,7 @@ import {
 export default {
     data() {
         return {
-            testArray: createArray(10),
+            startArray: createArray(10),
             intervall: null,
             randomEl1: 2,
             randomEl2: 4,
@@ -48,16 +48,16 @@ export default {
 
         // set two random elements that will be swapped next
         setTwoRandomElements() {
-            this.randomEl1 = getRandomNumber(0, this.testArray.length);
-            this.randomEl2 = getRandomNumber(0, this.testArray.length);
+            this.randomEl1 = getRandomNumber(0, this.startArray.length);
+            this.randomEl2 = getRandomNumber(0, this.startArray.length);
             while (this.randomEl2 === this.randomEl1) {
-                this.randomEl2 = getRandomNumber(0, this.testArray.length);
+                this.randomEl2 = getRandomNumber(0, this.startArray.length);
             }
         },
 
         // calculate width of each bar
         barWidth() {
-            return 100 / this.testArray.length;
+            return 100 / this.startArray.length;
         },
     },
 
@@ -65,12 +65,12 @@ export default {
     // Lifecycle Methods
     // ----
     mounted() {
-        this.highestNum = Math.max(...this.testArray);
+        this.highestNum = Math.max(...this.startArray);
         this.setTwoRandomElements();
         // set intervall to continuously swap two random elements
         this.intervall = setInterval(() => {
-            this.testArray = swapRandomElements(
-                this.testArray,
+            this.startArray = swapRandomElements(
+                this.startArray,
                 this.randomEl1,
                 this.randomEl2
             );
@@ -89,7 +89,7 @@ export default {
         <div class="bars">
             <div
                 class="bar"
-                v-for="(number, i) in testArray"
+                v-for="(number, i) in startArray"
                 :style="{
                     height: getHeightAsPercentage(number) + '%',
                     width: barWidth() + '%',
