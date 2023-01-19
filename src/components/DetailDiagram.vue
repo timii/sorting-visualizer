@@ -60,20 +60,43 @@ export default {
             return 100 / this.startArray.length;
         },
 
+        // set next step in algorithm step array
+        setNextAlgorithmStep() {
+            this.currentStep = this.algorithmSteps[this.currentStepIndex]
+            this.currentStepIndex += 1;
+        },
+
         // handle start button click
         startClicked() {
             console.log("start clicked")
+            const hasAnotherStep = this.algorithmSteps[this.currentStepIndex];
+
+            // immediately show first step and then after each intervall
+            if (hasAnotherStep) {
+                this.setNextAlgorithmStep()
+            }
+
+            // set intervall to continuously go through each algorithm step
+            this.intervall = setInterval(() => {
+                if (hasAnotherStep) {
+                    this.setNextAlgorithmStep()
+                } else {
+                    clearInterval(this.intervall)
+                }
+            }, 2000);
         },
 
         // handle stop button click
         stopClicked() {
             console.log("stop clicked")
+            clearInterval(this.intervall)
         }
     },
 
     // ----
     // Lifecycle Methods
     // ----
+
     mounted() {
         console.log("currentAlgo:", this.algorithmFunction)
         this.algorithmSteps = this.algorithmFunction(this.startArray)
@@ -81,17 +104,8 @@ export default {
         this.currentStepIndex += 1;
         console.log("algorithmSteps:",this.algorithmSteps, "currentStep:", this.currentStep)
         this.highestNum = Math.max(...this.startArray);
-
-        // set intervall to continuously go through each algorithm p
-        this.intervall = setInterval(() => {
-            if (this.algorithmSteps[this.currentStepIndex]) {
-                this.currentStep = this.algorithmSteps[this.currentStepIndex]
-                this.currentStepIndex += 1;
-            } else {
-                clearInterval(this.intervall)
-            }
-        }, 2000);
     },
+
     unmounted() {
         console.log("unmounted");
         clearInterval(this.intervall);
