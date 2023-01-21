@@ -4,6 +4,8 @@ import {
     swapRandomElements,
     getRandomNumber,
 } from "../utils/util.ts";
+import DiagramButton from "../components/DiagramButton.vue";
+
 export default {
     data() {
         return {
@@ -27,6 +29,10 @@ export default {
     // ----
     // Component Methods
     // ----
+
+    components: {
+        DiagramButton,
+    },
 
     methods: {
         // get current numbers height as a percentage
@@ -86,8 +92,8 @@ export default {
             }, 2000);
         },
 
-        // handle stop button click
-        stopClicked() {
+        // handle pause button click
+        pauseClicked() {
             console.log("stop clicked")
             clearInterval(this.intervall)
         },
@@ -136,9 +142,15 @@ export default {
             </div>
         </div>
         <div class="diagram-buttons">
-            <button class="btn start" @click="startClicked()">start</button>
-            <button class="btn stop" @click="stopClicked()">stop</button>
-            <button class="btn reset" @click="resetClicked()">reset</button>
+            <DiagramButton :label="'start'" :callback="startClicked"></DiagramButton>
+            <DiagramButton :label="'pause'" :callback="pauseClicked"></DiagramButton>
+            <DiagramButton :label="'reset'" :callback="resetClicked"></DiagramButton>
+            <!-- <div class="btn-container"> -->
+            <!--     <img class="btn-icon" :src="'src/assets/start.png'"> -->
+            <!--     <button class="btn start" @click="startClicked()">start</button> -->
+            <!-- </div> -->
+            <!-- <button class="btn stop" @click="stopClicked()">stop</button> -->
+            <!-- <button class="btn reset" @click="resetClicked()">reset</button> -->
         </div>
     </div>
 </template>
@@ -170,14 +182,51 @@ export default {
 .diagram-buttons {
     display: flex;
     gap: 10px;
+    margin-top: 5px;
+    justify-content: center;
+}
+
+.btn-container {
+    display: flex;
+    align-items: center;
+    transition: all 0.1s ease-in-out;
+    position: relative;
+    /* background-color: var(--grey-darker); */
+}
+
+.btn-icon {
+    margin-bottom: -2px;
 }
 
 .btn {
     padding: 5px;
     font-size: 16px;
+    background-color: var(--black);
+    color: var(--white-mute);
+    border: none;
+    font-size: 18px;
+    font-weight: 500;
 }
 
-.btn:hover {
+.btn-container:hover, .btn:hover {
     cursor: pointer;
+}
+
+.btn-container:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--text-light);
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.3s;
+}
+
+.btn-container:hover:after {
+    transform-origin: bottom left;
+    transform: scaleX(1);
 }
 </style>

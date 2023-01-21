@@ -11,7 +11,8 @@ export default {
     computed: {
         // find current algorithm using its name
         currentAlgorithm() {
-            const name = capitalizeAllFirstLetters(this.$route.params.name);
+            const pathVariable = this.$route.params.name.split("-").join(" ");
+            const name = capitalizeAllFirstLetters(pathVariable);
             console.log("name:", `'${name}'`, algorithms);
             let currentAlgo;
             for (let i = 0; i < algorithms.length; i++) {
@@ -35,7 +36,9 @@ export default {
     <main>
         <div class="detail-title">{{ currentAlgorithm.name }}</div>
         <div class="diagram-container">
-            <DetailDiagram :algorithmFunction=currentAlgorithm.runSort></DetailDiagram>
+            <DetailDiagram
+                :algorithmFunction="currentAlgorithm.runSort"
+            ></DetailDiagram>
         </div>
         <div class="description-container">
             description text
@@ -64,7 +67,6 @@ main {
 }
 
 .diagram-container {
-    border: solid 1px red;
     width: 70vw;
     height: 80vh;
 }
