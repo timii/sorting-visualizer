@@ -12,9 +12,9 @@ export default {
 </script>
 
 <template>
-    <div class="btn-container">
+    <div class="btn-container" @click="this.callback()">
         <img class="btn-icon" :src="'src/assets/' + this.label + '.png'" />
-        <button class="btn start" @click="this.callback()">
+        <button class="btn start">
             {{ this.label }}
         </button>
     </div>
@@ -26,7 +26,6 @@ export default {
     align-items: center;
     transition: all 0.1s ease-in-out;
     position: relative;
-    /* background-color: var(--grey-darker); */
 }
 
 .btn-icon {
@@ -36,7 +35,7 @@ export default {
 .btn {
     padding: 5px;
     font-size: 16px;
-    background-color: var(--black);
+    background-color: inherit;
     color: var(--white-mute);
     border: none;
     font-size: 18px;

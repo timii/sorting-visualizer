@@ -8,7 +8,9 @@ import { algorithms } from "../model/algorithms.ts";
             {{ complexity.name }}
         </div>
         <div v-for="alg in complexity.algoList" class="algo">
-            <router-link :to="'/' + alg.name.toLowerCase()">
+            <router-link
+                :to="'/' + alg.name.toLowerCase().split(' ').join('-')"
+            >
                 {{ alg.name }}
             </router-link>
         </div>
