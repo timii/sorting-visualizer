@@ -66,23 +66,23 @@ export default {
             this.currentStepIndex += 1;
         },
 
+        // check if the solution array has another step
+        hasAnotherStep() {
+            return this.currentStepIndex > this.algorithmSteps.length || this.algorithmSteps[this.currentStepIndex]
+        },
+
         // handle start button click
         startClicked() {
             console.log("start clicked")
-            const hasAnotherStep = this.algorithmSteps[this.currentStepIndex];
 
             // immediately show first step and then after each intervall
-            if (hasAnotherStep) {
+            if (this.hasAnotherStep()) {
                 this.setNextAlgorithmStep()
             }
 
             // set intervall to continuously go through each algorithm step
             this.intervall = setInterval(() => {
-                if (hasAnotherStep) {
-                    this.setNextAlgorithmStep()
-                } else {
-                    clearInterval(this.intervall)
-                }
+                this.hasAnotherStep() ? this.setNextAlgorithmStep() : clearInterval(this.intervall)
             }, 2000);
         },
 
@@ -90,6 +90,13 @@ export default {
         stopClicked() {
             console.log("stop clicked")
             clearInterval(this.intervall)
+        },
+
+        // handle reset button click
+        resetClicked() {
+            console.log("reset clicked")
+            this.currentStep = this.algorithmSteps[0]
+            this.currentStepIndex = 1;
         }
     },
 
@@ -102,7 +109,7 @@ export default {
         this.algorithmSteps = this.algorithmFunction(this.startArray)
         this.currentStep = this.algorithmSteps[0];
         this.currentStepIndex += 1;
-        console.log("algorithmSteps:",this.algorithmSteps, "currentStep:", this.currentStep)
+        console.log("algorithmSteps:",this.algorithmSteps, this.algorithmSteps.length, "currentStep:", this.currentStep)
         this.highestNum = Math.max(...this.startArray);
     },
 
@@ -131,6 +138,7 @@ export default {
         <div class="diagram-buttons">
             <button class="btn start" @click="startClicked()">start</button>
             <button class="btn stop" @click="stopClicked()">stop</button>
+            <button class="btn reset" @click="resetClicked()">reset</button>
         </div>
     </div>
 </template>
