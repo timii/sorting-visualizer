@@ -22,8 +22,8 @@ export default {
 
     props: {
         algorithmFunction: {
-            type: Function
-        }
+            type: Function,
+        },
     },
 
     // ----
@@ -68,43 +68,48 @@ export default {
 
         // set next step in algorithm step array
         setNextAlgorithmStep() {
-            this.currentStep = this.algorithmSteps[this.currentStepIndex]
+            this.currentStep = this.algorithmSteps[this.currentStepIndex];
             this.currentStepIndex += 1;
         },
 
         // check if the solution array has another step
         hasAnotherStep() {
-            return this.currentStepIndex > this.algorithmSteps.length || this.algorithmSteps[this.currentStepIndex]
+            return (
+                this.currentStepIndex > this.algorithmSteps.length ||
+                this.algorithmSteps[this.currentStepIndex]
+            );
         },
 
         // handle start button click
         startClicked() {
-            console.log("start clicked")
+            console.log("start clicked");
 
             // immediately show first step and then after each intervall
             if (this.hasAnotherStep()) {
-                this.setNextAlgorithmStep()
+                this.setNextAlgorithmStep();
             }
 
             // set intervall to continuously go through each algorithm step
             this.intervall = setInterval(() => {
-                this.hasAnotherStep() ? this.setNextAlgorithmStep() : clearInterval(this.intervall)
+                this.hasAnotherStep()
+                    ? this.setNextAlgorithmStep()
+                    : clearInterval(this.intervall);
             }, 2000);
         },
 
         // handle pause button click
         pauseClicked() {
-            console.log("stop clicked")
-            clearInterval(this.intervall)
+            console.log("stop clicked");
+            clearInterval(this.intervall);
         },
 
         // handle reset button click
         resetClicked() {
-            console.log("reset clicked")
-            clearInterval(this.intervall)
-            this.currentStep = this.algorithmSteps[0]
+            console.log("reset clicked");
+            clearInterval(this.intervall);
+            this.currentStep = this.algorithmSteps[0];
             this.currentStepIndex = 1;
-        }
+        },
     },
 
     // ----
@@ -112,11 +117,17 @@ export default {
     // ----
 
     mounted() {
-        console.log("currentAlgo:", this.algorithmFunction)
-        this.algorithmSteps = this.algorithmFunction(this.startArray)
+        console.log("currentAlgo:", this.algorithmFunction);
+        this.algorithmSteps = this.algorithmFunction(this.startArray);
         this.currentStep = this.algorithmSteps[0];
         this.currentStepIndex += 1;
-        console.log("algorithmSteps:",this.algorithmSteps, this.algorithmSteps.length, "currentStep:", this.currentStep)
+        console.log(
+            "algorithmSteps:",
+            this.algorithmSteps,
+            this.algorithmSteps.length,
+            "currentStep:",
+            this.currentStep
+        );
         this.highestNum = Math.max(...this.startArray);
     },
 
@@ -144,9 +155,18 @@ export default {
         </div>
         <div class="diagram-buttons">
             <div class="button-row">
-                <DiagramButton :label="'start'" :callback="startClicked"></DiagramButton>
-                <DiagramButton :label="'pause'" :callback="pauseClicked"></DiagramButton>
-                <DiagramButton :label="'reset'" :callback="resetClicked"></DiagramButton>
+                <DiagramButton
+                    :label="'start'"
+                    :callback="startClicked"
+                ></DiagramButton>
+                <DiagramButton
+                    :label="'pause'"
+                    :callback="pauseClicked"
+                ></DiagramButton>
+                <DiagramButton
+                    :label="'reset'"
+                    :callback="resetClicked"
+                ></DiagramButton>
             </div>
         </div>
     </div>
@@ -190,5 +210,4 @@ export default {
     border-radius: 5px;
     gap: 20px;
 }
-
 </style>

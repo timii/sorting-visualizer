@@ -2,11 +2,12 @@
 import { algorithms } from "../model/algorithms.ts";
 import { capitalizeAllFirstLetters } from "../utils/util.ts";
 import DetailDiagram from "../components/DetailDiagram.vue";
-// console.log("algos:", algorithms);
+import BackButton from "../components/BackButton.vue";
 
 export default {
     components: {
         DetailDiagram,
+        BackButton,
     },
     computed: {
         // find current algorithm using its name
@@ -34,6 +35,9 @@ export default {
 
 <template>
     <main>
+        <div class="back-container">
+            <BackButton></BackButton>
+        </div>
         <div class="detail-title">{{ currentAlgorithm.name }}</div>
         <div class="diagram-container">
             <DetailDiagram
@@ -64,10 +68,17 @@ main {
     color: var(--text-light);
     font-weight: 500;
     margin: 16px 0 30px 0;
+    cursor: default;
 }
 
 .diagram-container {
     width: 70vw;
     height: 80vh;
+}
+
+.back-container {
+    position: absolute;
+    left: 80px;
+    top: 20px;
 }
 </style>
