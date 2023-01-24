@@ -19,7 +19,6 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    transform: rotate3d(0, 0, 1, 0.001deg); /* clear artifacts*/
 }
 
 a {

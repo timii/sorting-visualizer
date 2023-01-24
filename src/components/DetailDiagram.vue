@@ -103,10 +103,12 @@ export default {
             clearInterval(this.intervall);
         },
 
-        // handle reset button click
-        resetClicked() {
-            console.log("reset clicked");
+        // handle shuffle button click
+        shuffleClicked() {
+            console.log("shuffle clicked");
             clearInterval(this.intervall);
+            this.startArray = createArray(5);
+            this.algorithmSteps = this.algorithmFunction(this.startArray);
             this.currentStep = this.algorithmSteps[0];
             this.currentStepIndex = 1;
         },
@@ -164,8 +166,8 @@ export default {
                     :callback="pauseClicked"
                 ></DiagramButton>
                 <DiagramButton
-                    :label="'reset'"
-                    :callback="resetClicked"
+                    :label="'shuffle'"
+                    :callback="shuffleClicked"
                 ></DiagramButton>
             </div>
         </div>
