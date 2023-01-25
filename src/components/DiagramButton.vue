@@ -13,7 +13,11 @@ export default {
 
 <template>
     <div class="btn-container" @click="this.callback()">
-        <img class="btn-icon" :src="'src/assets/' + this.label + '.png'" />
+        <img
+            class="btn-icon"
+            :src="'src/assets/' + this.label + '.png'"
+            :alt="this.label"
+        />
         <button class="btn start">
             {{ this.label }}
         </button>

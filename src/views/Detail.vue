@@ -35,32 +35,46 @@ export default {
 
 <template>
     <main>
-        <div class="back-container">
-            <BackButton></BackButton>
-        </div>
-        <div class="detail-title">{{ currentAlgorithm.name }}</div>
-        <div class="diagram-container">
-            <DetailDiagram
-                :algorithmFunction="currentAlgorithm.runSort"
-            ></DetailDiagram>
-        </div>
-        <div class="description-container">
-            description text
-            <div>detail page for {{ currentAlgorithm.name }} works</div>
-            <div>
-                call function test:
-                {{ currentAlgorithm.runSort([4, 2, 1, 5, 3]) }}
+        <section class="diagram-section">
+            <div class="back-container">
+                <BackButton></BackButton>
             </div>
-        </div>
+            <div class="detail-title">{{ currentAlgorithm.name }}</div>
+            <div class="diagram-container">
+                <DetailDiagram
+                    :algorithmFunction="currentAlgorithm.runSort"
+                ></DetailDiagram>
+            </div>
+            <div class="arrows-down-container">
+                <img
+                    class="arrows-down"
+                    :src="'src/assets/arrows-down.png'"
+                    :alt="'arrows down'"
+                />
+            </div>
+        </section>
+        <section class="description-section">
+            <div class="description-container">
+                description text
+                <div>detail page for {{ currentAlgorithm.name }} works</div>
+                <div>
+                    call function test:
+                    {{ currentAlgorithm.runSort([4, 2, 1, 5, 3]) }}
+                </div>
+            </div>
+        </section>
     </main>
 </template>
 
 <style scoped>
-main {
+.diagram-section {
+    height: 100vh;
+}
+
+section {
     display: flex;
     flex-direction: column;
     align-items: center;
-    pading: 16px;
 }
 
 .detail-title {
@@ -74,6 +88,18 @@ main {
 .diagram-container {
     width: 70vw;
     height: 80vh;
+}
+
+.arrows-down-container {
+    flex: 1;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    margin-bottom: 1%;
+}
+
+.arrows-down {
+    width: 38px;
 }
 
 .back-container {

@@ -119,7 +119,6 @@ export default {
     // ----
 
     mounted() {
-        console.log("currentAlgo:", this.algorithmFunction);
         this.algorithmSteps = this.algorithmFunction(this.startArray);
         this.currentStep = this.algorithmSteps[0];
         this.currentStepIndex += 1;
