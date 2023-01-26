@@ -3,11 +3,13 @@ import { algorithms } from "../model/algorithms.ts";
 import { capitalizeAllFirstLetters } from "../utils/util.ts";
 import DetailDiagram from "../components/DetailDiagram.vue";
 import BackButton from "../components/BackButton.vue";
+import DetailDescription from "../components/DetailDescription.vue";
 
 export default {
     components: {
         DetailDiagram,
         BackButton,
+        DetailDescription,
     },
     computed: {
         // find current algorithm using its name
@@ -54,14 +56,10 @@ export default {
             </div>
         </section>
         <section class="description-section">
-            <div class="description-container">
-                description text
-                <div>detail page for {{ currentAlgorithm.name }} works</div>
-                <div>
-                    call function test:
-                    {{ currentAlgorithm.runSort([4, 2, 1, 5, 3]) }}
-                </div>
-            </div>
+            <DetailDescription
+                :name="currentAlgorithm.name"
+                :description="currentAlgorithm.description"
+            ></DetailDescription>
         </section>
     </main>
 </template>

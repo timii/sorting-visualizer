@@ -6,5 +6,5 @@ export interface IAlgorithmComplexity {
 export interface IAlgorithm {
     name: string;
     description: string;
-    runSort?: (arr: number[]) => number[];
+    runSort?: (arr: number[]) => number[][];
 }
