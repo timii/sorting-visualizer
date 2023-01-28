@@ -202,11 +202,11 @@ export default {
 }
 
 .button-row {
-    width: 50%;
     background-color: var(--grey-darker);
     display: flex;
     justify-content: center;
     border-radius: 5px;
     gap: 20px;
+    padding: 0 20px;
 }
 </style>
