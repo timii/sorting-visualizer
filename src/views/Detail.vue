@@ -47,20 +47,20 @@ export default {
                     :algorithmFunction="currentAlgorithm.runSort"
                 ></DetailDiagram>
             </div>
-            <div class="arrows-down-container">
-                <img
-                    class="arrows-down"
-                    :src="'src/assets/arrows-down.png'"
-                    :alt="'arrows down'"
-                />
-            </div>
+            <!-- <div class="arrows-down-container"> -->
+            <!--     <img -->
+            <!--         class="arrows-down" -->
+            <!--         :src="'src/assets/arrows-down.png'" -->
+            <!--         :alt="'arrows down'" -->
+            <!--     /> -->
+            <!-- </div> -->
         </section>
-        <section class="description-section">
-            <DetailDescription
-                :name="currentAlgorithm.name"
-                :description="currentAlgorithm.description"
-            ></DetailDescription>
-        </section>
+        <!-- <section class="description-section"> -->
+        <!--     <DetailDescription -->
+        <!--         :name="currentAlgorithm.name" -->
+        <!--         :description="currentAlgorithm.description" -->
+        <!--     ></DetailDescription> -->
+        <!-- </section> -->
     </main>
 </template>
 

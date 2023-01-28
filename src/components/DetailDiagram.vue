@@ -158,11 +158,9 @@ export default {
             <div class="button-row">
                 <DiagramButton
                     :label="'start'"
+                    :secondaryLabel="'pause'"
                     :callback="startClicked"
-                ></DiagramButton>
-                <DiagramButton
-                    :label="'pause'"
-                    :callback="pauseClicked"
+                    :secondaryCallback="pauseClicked"
                 ></DiagramButton>
                 <DiagramButton
                     :label="'shuffle'"

@@ -1,18 +1,59 @@
 <script lang="ts">
 export default {
+    data() {
+        return {
+            primaryLabel: true,
+        };
+    },
+
     props: {
         label: {
             type: String,
         },
+        secondaryLabel: {
+            type: String,
+        },
         callback: {
             type: Function,
+        },
+        secondaryCallback: {
+            type: Function,
+        },
+    },
+
+    methods: {
+        buttonWithSecondaryLabelClicked() {
+            this.primaryLabel ? this.callback() : this.secondaryCallback();
+            this.primaryLabel = !this.primaryLabel;
+            console.log("onclick -> primary:", this.primaryLabel);
         },
     },
 };
 </script>
 
 <template>
-    <div class="btn-container" @click="this.callback()">
+    <!-- button label and callback change on click -->
+    <div
+        v-if="this.secondaryLabel && this.secondaryCallback"
+        class="btn-container"
+        @click="buttonWithSecondaryLabelClicked"
+    >
+        <img
+            class="btn-icon"
+            :src="
+                'src/assets/' +
+                (this.primaryLabel ? this.label : this.secondaryLabel) +
+                '.png'
+            "
+            :alt="this.primaryLabel ? this.label : this.secondaryLabel"
+        />
+        <button class="btn start">
+            {{ this.primaryLabel ? this.label : this.secondaryLabel }}
+        </button>
+    </div>
+
+    <!-- normal button with static label and callback -->
+    <div v-else class="btn-container" @click="this.callback()">
         <img
             class="btn-icon"
             :src="'src/assets/' + this.label + '.png'"
