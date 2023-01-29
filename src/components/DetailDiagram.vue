@@ -17,6 +17,7 @@ export default {
             randomEl1: 2,
             randomEl2: 4,
             highestNum: 0,
+            isRunning: false,
         };
     },
 
@@ -70,6 +71,9 @@ export default {
         setNextAlgorithmStep() {
             this.currentStep = this.algorithmSteps[this.currentStepIndex];
             this.currentStepIndex += 1;
+            if (this.currentStepIndex === this.algorithmSteps.length) {
+                this.isRunning = false;
+            }
         },
 
         // check if the solution array has another step
@@ -83,6 +87,7 @@ export default {
         // handle start button click
         startClicked() {
             console.log("start clicked");
+            this.isRunning = true;
 
             // immediately show first step and then after each intervall
             if (this.hasAnotherStep()) {
@@ -100,12 +105,15 @@ export default {
         // handle pause button click
         pauseClicked() {
             console.log("stop clicked");
+            this.isRunning = false;
             clearInterval(this.intervall);
         },
 
         // handle shuffle button click
         shuffleClicked() {
             console.log("shuffle clicked");
+            this.isRunning = false;
+
             clearInterval(this.intervall);
             this.startArray = createArray(5);
             this.algorithmSteps = this.algorithmFunction(this.startArray);
@@ -121,14 +129,14 @@ export default {
     mounted() {
         this.algorithmSteps = this.algorithmFunction(this.startArray);
         this.currentStep = this.algorithmSteps[0];
-        this.currentStepIndex += 1;
-        console.log(
-            "algorithmSteps:",
-            this.algorithmSteps,
-            this.algorithmSteps.length,
-            "currentStep:",
-            this.currentStep
-        );
+        this.currentStepIndex = 1;
+        // console.log(
+        //     "algorithmSteps:",
+        //     this.algorithmSteps,
+        //     this.algorithmSteps.length,
+        //     "currentStep:",
+        //     this.currentStep
+        // );
         this.highestNum = Math.max(...this.startArray);
     },
 
@@ -161,6 +169,7 @@ export default {
                     :secondaryLabel="'pause'"
                     :callback="startClicked"
                     :secondaryCallback="pauseClicked"
+                    :isRunningProp="this.isRunning"
                 ></DiagramButton>
                 <DiagramButton
                     :label="'shuffle'"

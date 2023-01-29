@@ -2,7 +2,7 @@
 export default {
     data() {
         return {
-            primaryLabel: true,
+            isRunning: true,
         };
     },
 
@@ -19,14 +19,31 @@ export default {
         secondaryCallback: {
             type: Function,
         },
+        isRunningProp: {
+            type: Boolean,
+        },
+    },
+
+    // watch prop to call function when it gets changed
+    watch: {
+        isRunningProp: function (newValue, oldValue) {
+            this.isRunning = newValue;
+        },
     },
 
     methods: {
         buttonWithSecondaryLabelClicked() {
-            this.primaryLabel ? this.callback() : this.secondaryCallback();
-            this.primaryLabel = !this.primaryLabel;
-            console.log("onclick -> primary:", this.primaryLabel);
+            this.isRunning ? this.secondaryCallback() : this.callback();
+            this.isRunning = !this.isRunning;
         },
+
+        currentLabel() {
+            return this.isRunning ? this.secondaryLabel : this.label;
+        },
+    },
+
+    mounted() {
+        this.isRunning = this.isRunningProp;
     },
 };
 </script>
@@ -40,15 +57,11 @@ export default {
     >
         <img
             class="btn-icon"
-            :src="
-                'src/assets/' +
-                (this.primaryLabel ? this.label : this.secondaryLabel) +
-                '.png'
-            "
-            :alt="this.primaryLabel ? this.label : this.secondaryLabel"
+            :src="'src/assets/' + this.currentLabel() + '.png'"
+            :alt="this.currentLabel()"
         />
         <button class="btn start">
-            {{ this.primaryLabel ? this.label : this.secondaryLabel }}
+            {{ this.currentLabel() }}
         </button>
     </div>
 
