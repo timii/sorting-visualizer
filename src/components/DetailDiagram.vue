@@ -5,6 +5,7 @@ import {
     getRandomNumber,
 } from "../utils/util.ts";
 import DiagramButton from "../components/DiagramButton.vue";
+import DiagramSlider from "../components/DiagramSlider.vue";
 
 export default {
     data() {
@@ -33,6 +34,7 @@ export default {
 
     components: {
         DiagramButton,
+        DiagramSlider,
     },
 
     methods: {
@@ -123,6 +125,11 @@ export default {
             this.currentStep = this.algorithmSteps[0];
             this.currentStepIndex = 1;
         },
+
+        // handle value change for element amount slider
+        elementsAmountChanged(value) {
+            console.log("value:", value);
+        },
     },
 
     // ----
@@ -179,6 +186,12 @@ export default {
                     :callback="shuffleClicked"
                 ></DiagramButton>
             </div>
+            <div class="button-row">
+                <DiagramSlider
+                    :label="'elements'"
+                    :callback="elementsAmountChanged"
+                ></DiagramSlider>
+            </div>
         </div>
     </div>
 </template>
@@ -211,12 +224,16 @@ export default {
     display: flex;
     margin-top: 5px;
     justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
 }
 
 .button-row {
     background-color: var(--grey-darker);
     display: flex;
     justify-content: center;
+    align-items: center;
     border-radius: 5px;
     gap: 20px;
     padding: 0 20px;
