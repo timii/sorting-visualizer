@@ -96,9 +96,12 @@ export default {
 
             // set intervall to continuously go through each algorithm step
             this.intervall = setInterval(() => {
-                this.hasAnotherStep()
-                    ? this.setNextAlgorithmStep()
-                    : clearInterval(this.intervall);
+                if (this.hasAnotherStep()) {
+                    this.setNextAlgorithmStep();
+                } else {
+                    clearInterval(this.intervall);
+                    this.isRunning = false;
+                }
             }, 2000);
         },
 
