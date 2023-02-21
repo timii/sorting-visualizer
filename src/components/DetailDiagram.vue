@@ -10,7 +10,7 @@ import DiagramSlider from "../components/DiagramSlider.vue";
 export default {
     data() {
         return {
-            startArray: createArray(5),
+            startArray: createArray(50),
             algorithmSteps: [],
             currentStep: [],
             currentStepIndex: 0,
@@ -19,6 +19,7 @@ export default {
             randomEl2: 4,
             highestNum: 0,
             isRunning: false,
+            amountOfElements: 0,
         };
     },
 
@@ -120,7 +121,7 @@ export default {
             this.isRunning = false;
 
             clearInterval(this.intervall);
-            this.startArray = createArray(5);
+            this.startArray = createArray(this.amountOfElements);
             this.algorithmSteps = this.algorithmFunction(this.startArray);
             this.currentStep = this.algorithmSteps[0];
             this.currentStepIndex = 1;
@@ -129,6 +130,17 @@ export default {
         // handle value change for element amount slider
         elementsAmountChanged(value) {
             console.log("value:", value);
+            this.amountOfElements = value;
+
+            this.isRunning = false;
+
+            clearInterval(this.intervall);
+            this.startArray = createArray(this.amountOfElements);
+            this.algorithmSteps = this.algorithmFunction(this.startArray);
+            this.currentStep = this.algorithmSteps[0];
+            this.currentStepIndex = 1;
+
+            this.highestNum = Math.max(...this.startArray);
         },
     },
 
@@ -140,6 +152,7 @@ export default {
         this.algorithmSteps = this.algorithmFunction(this.startArray);
         this.currentStep = this.algorithmSteps[0];
         this.currentStepIndex = 1;
+        this.amountOfElements = this.startArray.length;
         // console.log(
         //     "algorithmSteps:",
         //     this.algorithmSteps,
@@ -186,9 +199,10 @@ export default {
                     :callback="shuffleClicked"
                 ></DiagramButton>
             </div>
-            <div class="button-row">
+            <div class="button-row sliders">
                 <DiagramSlider
-                    :label="'elements'"
+                    :label="'Elements'"
+                    :amount="amountOfElements"
                     :callback="elementsAmountChanged"
                 ></DiagramSlider>
             </div>
@@ -237,5 +251,10 @@ export default {
     border-radius: 5px;
     gap: 20px;
     padding: 0 20px;
+    height: 36px;
+}
+
+.sliders {
+    height: 60px;
 }
 </style>
