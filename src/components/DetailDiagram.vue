@@ -19,7 +19,8 @@ export default {
             randomEl2: 4,
             highestNum: 0,
             isRunning: false,
-            amountOfElements: 0,
+            amountOfElements: 50,
+            sortingSpeed: 50,
         };
     },
 
@@ -105,7 +106,7 @@ export default {
                     clearInterval(this.intervall);
                     this.isRunning = false;
                 }
-            }, 2000);
+            }, 1000 * (100 - this.sortingSpeed));
         },
 
         // handle pause button click
@@ -129,7 +130,7 @@ export default {
 
         // handle value change for element amount slider
         elementsAmountChanged(value) {
-            console.log("value:", value);
+            console.log("value:", value, typeof value);
             this.amountOfElements = value;
 
             this.isRunning = false;
@@ -141,6 +142,12 @@ export default {
             this.currentStepIndex = 1;
 
             this.highestNum = Math.max(...this.startArray);
+        },
+
+        // handle value change for speed slider
+        sortSpeedChanged(value) {
+            console.log("value:", value, typeof value);
+            this.sortingSpeed = value;
         },
     },
 
@@ -204,6 +211,17 @@ export default {
                     :label="'Elements'"
                     :amount="amountOfElements"
                     :callback="elementsAmountChanged"
+                    :min="5"
+                    :max="100"
+                    :step="1"
+                ></DiagramSlider>
+                <DiagramSlider
+                    :label="'Speed'"
+                    :amount="sortingSpeed"
+                    :callback="sortSpeedChanged"
+                    :min="1"
+                    :max="100"
+                    :step="1"
                 ></DiagramSlider>
             </div>
         </div>

@@ -2,7 +2,7 @@
 export default {
     data() {
         return {
-            currentValue: "50",
+            currentValue: 0,
         };
     },
 
@@ -16,13 +16,26 @@ export default {
         callback: {
             type: Function,
         },
+        min: {
+            type: Number,
+        },
+        max: {
+            type: Number,
+        },
+        step: {
+            type: Number,
+        },
     },
 
     methods: {
         valueChanged() {
             console.log("value changes:", this.currentValue);
-            this.callback(this.currentValue);
+            this.callback(parseFloat(this.currentValue));
         },
+    },
+
+    mounted() {
+        this.currentValue = this.amount;
     },
 };
 </script>
@@ -32,9 +45,9 @@ export default {
         <span class="slider-label">{{ this.label }}: {{ this.amount }}</span>
         <input
             type="range"
-            min="5"
-            max="100"
-            step="1"
+            :min="this.min"
+            :max="this.max"
+            :step="this.step"
             class="slider"
             id="slider"
             @change="valueChanged"
@@ -65,7 +78,7 @@ export default {
     border-radius: 5px;
     background: var(--grey);
     outline: none;
-    opacity: 0.7;
+    opacity: 0.8;
     -webkit-transition: 0.2s;
     transition: opacity 0.2s;
 }
