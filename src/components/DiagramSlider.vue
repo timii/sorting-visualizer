@@ -25,11 +25,14 @@ export default {
         step: {
             type: Number,
         },
+        amountUnit: {
+            type: String,
+        },
     },
 
     methods: {
         valueChanged() {
-            console.log("value changes:", this.currentValue);
+            // console.log("value changes:", this.currentValue);
             this.callback(parseFloat(this.currentValue));
         },
     },
@@ -42,7 +45,9 @@ export default {
 
 <template>
     <div class="slider-container">
-        <span class="slider-label">{{ this.label }}: {{ this.amount }}</span>
+        <span class="slider-label"
+            >{{ this.label }}: {{ this.amount }}{{ this.amountUnit }}</span
+        >
         <input
             type="range"
             :min="this.min"
