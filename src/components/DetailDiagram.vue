@@ -102,11 +102,12 @@ export default {
             this.intervall = setInterval(() => {
                 if (this.hasAnotherStep()) {
                     this.setNextAlgorithmStep();
+                    console.log("start interval -> speed:", this.sortingSpeed);
                 } else {
                     clearInterval(this.intervall);
                     this.isRunning = false;
                 }
-            }, 1000 * (100 - this.sortingSpeed));
+            }, 10 * (100 - this.sortingSpeed));
         },
 
         // handle pause button click
@@ -130,7 +131,7 @@ export default {
 
         // handle value change for element amount slider
         elementsAmountChanged(value) {
-            console.log("value:", value, typeof value);
+            console.log("amount change -> value:", value, typeof value);
             this.amountOfElements = value;
 
             this.isRunning = false;
@@ -146,8 +147,26 @@ export default {
 
         // handle value change for speed slider
         sortSpeedChanged(value) {
-            console.log("value:", value, typeof value);
+            console.log("speed change -> value:", value, typeof value);
             this.sortingSpeed = value;
+            this.isRunning = false;
+
+            clearInterval(this.interval);
+
+            // create new intervall with the new speed
+            this.intervall = setInterval(() => {
+                if (this.hasAnotherStep()) {
+                    this.setNextAlgorithmStep();
+                    console.log(
+                        "new faster interval -> speed:",
+                        this.sortingSpeed
+                    );
+                    this.isRunning = true;
+                } else {
+                    clearInterval(this.intervall);
+                    this.isRunning = false;
+                }
+            }, 10 * (100 - this.sortingSpeed));
         },
     },
 
@@ -222,6 +241,7 @@ export default {
                     :min="1"
                     :max="100"
                     :step="1"
+                    :amountUnit="'%'"
                 ></DiagramSlider>
             </div>
         </div>
