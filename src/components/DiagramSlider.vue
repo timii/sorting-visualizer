@@ -90,6 +90,7 @@ export default {
 
 .slider:hover {
     opacity: 1;
+    cursor: pointer;
 }
 
 .slider::-webkit-slider-thumb {
