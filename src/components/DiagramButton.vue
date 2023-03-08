@@ -22,6 +22,9 @@ export default {
         isRunningProp: {
             type: Boolean,
         },
+        disabled: {
+            type: Boolean,
+        },
     },
 
     // watch prop to call function when it gets changed
@@ -33,8 +36,10 @@ export default {
 
     methods: {
         buttonWithSecondaryLabelClicked() {
-            this.isRunning ? this.secondaryCallback() : this.callback();
-            this.isRunning = !this.isRunning;
+            if (!this.disabled) {
+                this.isRunning ? this.secondaryCallback() : this.callback();
+                this.isRunning = !this.isRunning;
+            }
         },
 
         currentLabel() {
@@ -53,6 +58,7 @@ export default {
     <div
         v-if="this.secondaryLabel && this.secondaryCallback"
         class="btn-container"
+        :class="{ disabled: this.disabled }"
         @click="buttonWithSecondaryLabelClicked"
     >
         <img
@@ -60,13 +66,18 @@ export default {
             :src="'src/assets/' + this.currentLabel() + '.png'"
             :alt="this.currentLabel()"
         />
-        <button class="btn start">
+        <button class="btn start" :disabled="this.disabled">
             {{ this.currentLabel() }}
         </button>
     </div>
 
     <!-- normal button with static label and callback -->
-    <div v-else class="btn-container" @click="this.callback()">
+    <div
+        v-else
+        class="btn-container"
+        @click="this.callback()"
+        :class="{ disabled: this.disabled }"
+    >
         <img
             class="btn-icon"
             :src="'src/assets/' + this.label + '.png'"
@@ -84,6 +95,20 @@ export default {
     align-items: center;
     transition: all 0.1s ease-in-out;
     position: relative;
+}
+
+.btn-container.disabled {
+    opacity: 0.5;
+}
+
+.btn-container.disabled:hover,
+.btn-container.disabled .btn:hover {
+    cursor: unset;
+}
+
+.btn-container.disabled:after {
+    content: unset;
+    transition: all 0s;
 }
 
 .btn-icon {

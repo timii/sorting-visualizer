@@ -21,6 +21,7 @@ export default {
             isRunning: false,
             amountOfElements: 50,
             sortingSpeed: 50,
+            isDoneSorting: false,
         };
     },
 
@@ -105,6 +106,7 @@ export default {
                 } else {
                     this.intervall = clearInterval(this.intervall);
                     this.isRunning = false;
+                    this.isDoneSorting = true;
                 }
             }, 10 * (100 - this.sortingSpeed));
         },
@@ -120,6 +122,7 @@ export default {
         shuffleClicked() {
             console.log("shuffle clicked");
             this.isRunning = false;
+            this.isDoneSorting = false;
 
             this.intervall = clearInterval(this.intervall);
             this.startArray = createArray(this.amountOfElements);
@@ -132,8 +135,8 @@ export default {
         elementsAmountChanged(value) {
             console.log("amount change -> value:", value, typeof value);
             this.amountOfElements = value;
-
             this.isRunning = false;
+            this.isDoneSorting = false;
 
             this.intervall = clearInterval(this.intervall);
             this.startArray = createArray(this.amountOfElements);
@@ -160,6 +163,7 @@ export default {
                     } else {
                         this.intervall = clearInterval(this.intervall);
                         this.isRunning = false;
+                        this.isDoneSorting = true;
                     }
                 }, 10 * (100 - this.sortingSpeed));
             }
@@ -207,6 +211,7 @@ export default {
                     :callback="startClicked"
                     :secondaryCallback="pauseClicked"
                     :isRunningProp="this.isRunning"
+                    :disabled="this.isDoneSorting"
                 ></DiagramButton>
                 <DiagramButton
                     :label="'shuffle'"
