@@ -102,9 +102,8 @@ export default {
             this.intervall = setInterval(() => {
                 if (this.hasAnotherStep()) {
                     this.setNextAlgorithmStep();
-                    console.log("start interval -> speed:", this.sortingSpeed);
                 } else {
-                    clearInterval(this.intervall);
+                    this.intervall = clearInterval(this.intervall);
                     this.isRunning = false;
                 }
             }, 10 * (100 - this.sortingSpeed));
@@ -114,7 +113,7 @@ export default {
         pauseClicked() {
             console.log("stop clicked");
             this.isRunning = false;
-            clearInterval(this.intervall);
+            this.intervall = clearInterval(this.intervall);
         },
 
         // handle shuffle button click
@@ -122,7 +121,7 @@ export default {
             console.log("shuffle clicked");
             this.isRunning = false;
 
-            clearInterval(this.intervall);
+            this.intervall = clearInterval(this.intervall);
             this.startArray = createArray(this.amountOfElements);
             this.algorithmSteps = this.algorithmFunction(this.startArray);
             this.currentStep = this.algorithmSteps[0];
@@ -136,7 +135,7 @@ export default {
 
             this.isRunning = false;
 
-            clearInterval(this.intervall);
+            this.intervall = clearInterval(this.intervall);
             this.startArray = createArray(this.amountOfElements);
             this.algorithmSteps = this.algorithmFunction(this.startArray);
             this.currentStep = this.algorithmSteps[0];
@@ -149,21 +148,16 @@ export default {
         sortSpeedChanged(value) {
             console.log("speed change -> value:", value, typeof value);
             this.sortingSpeed = value;
-            this.isRunning = false;
 
-            clearInterval(this.interval);
+            this.intervall = clearInterval(this.intervall);
 
             // create new intervall with the new speed
             this.intervall = setInterval(() => {
                 if (this.hasAnotherStep()) {
                     this.setNextAlgorithmStep();
-                    console.log(
-                        "new faster interval -> speed:",
-                        this.sortingSpeed
-                    );
                     this.isRunning = true;
                 } else {
-                    clearInterval(this.intervall);
+                    this.intervall = clearInterval(this.intervall);
                     this.isRunning = false;
                 }
             }, 10 * (100 - this.sortingSpeed));
@@ -179,19 +173,11 @@ export default {
         this.currentStep = this.algorithmSteps[0];
         this.currentStepIndex = 1;
         this.amountOfElements = this.startArray.length;
-        // console.log(
-        //     "algorithmSteps:",
-        //     this.algorithmSteps,
-        //     this.algorithmSteps.length,
-        //     "currentStep:",
-        //     this.currentStep
-        // );
         this.highestNum = Math.max(...this.startArray);
     },
 
     unmounted() {
-        console.log("unmounted");
-        clearInterval(this.intervall);
+        this.intervall = clearInterval(this.intervall);
     },
 };
 </script>
