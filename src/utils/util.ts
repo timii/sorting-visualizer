@@ -21,6 +21,7 @@ export function createArray(n: number): number[] {
         const num = Math.floor(Math.random() * n) + 1;
         if (!arr.includes(num)) arr.push(num);
     }
+    console.log("startArray:", arr);
     return arr;
 }
 
@@ -38,6 +39,23 @@ export function swapRandomElements(
     return arr;
 }
 
+// Function to get a random number between min and max
 export function getRandomNumber(min: number, max: number): number {
     return Math.floor(Math.random() * max) + min;
+}
+
+// Function that pushed a new step into a given array
+export function pushStepIntoArray(arr: number[][], step: number[]) {
+    if (!arr.find((el) => arraysEqual(el, step))) {
+        arr.push(step);
+    }
+    return arr;
+}
+
+// Function to check if two arrays are equal
+function arraysEqual(a: number[], b: number[]) {
+    for (var i = 0; i < a.length; ++i) {
+        if (a[i] !== b[i]) return false;
+    }
+    return true;
 }

@@ -1,19 +1,48 @@
-let running = false;
-let sortArray: number[] = [];
+import { pushStepIntoArray } from "@/utils/util";
 
-export function setArray(arr: number[]) {
-    console.log("arr:", arr, "sortArray before:", sortArray);
-    sortArray = arr;
-    console.log("sortArray after:", sortArray);
-}
+export function quicksort(arr: number[]) {
+    let algorithmSteps: number[][] = [];
+    let firstRun = true;
+    sorting(arr);
 
-export function setRunning(value: boolean) {
-    console.log("setRunning -> value:", value);
-    running = value;
-    console.log("running after:", running);
-}
+    function sorting(array: number[], left = 0, right = arr.length - 1) {
+        if (left >= right) {
+            return;
+        }
 
-export function quicksort(arr?: number[]): number[] {
-    console.log("quicksort -> arr:", arr, arr ? arr : [1, 2, 3]);
-    return arr ? arr : [1, 2, 3];
+        if (firstRun) {
+            algorithmSteps = [];
+            algorithmSteps = pushStepIntoArray(algorithmSteps, [...array]);
+            firstRun = false;
+        }
+
+        let pivotIndex = partition(array, left, right);
+        sorting(array, left, pivotIndex - 1);
+        sorting(array, pivotIndex + 1, right);
+    }
+
+    function partition(arr: number[], left: number, right: number) {
+        let pivotValue = arr[right];
+        let partitionIndex = left;
+
+        for (let i = left; i < right; i++) {
+            if (arr[i] < pivotValue) {
+                swap(arr, i, partitionIndex);
+                algorithmSteps = pushStepIntoArray(algorithmSteps, [...arr]);
+                partitionIndex++;
+            }
+        }
+
+        swap(arr, right, partitionIndex);
+        algorithmSteps = pushStepIntoArray(algorithmSteps, [...arr]);
+        return partitionIndex;
+    }
+
+    function swap(arr: number[], first: number, second: number) {
+        let temp = arr[first];
+        arr[first] = arr[second];
+        arr[second] = temp;
+    }
+
+    return algorithmSteps;
 }
