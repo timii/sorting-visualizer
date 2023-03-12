@@ -77,7 +77,7 @@ section {
 
 .detail-title {
     font-size: 40px;
-    color: var(--text-light);
+    color: var(--white-mute);
     font-weight: 500;
     margin: 16px 0 30px 0;
     cursor: default;
