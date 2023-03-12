@@ -3,6 +3,10 @@ import { pushStepIntoArray } from "@/utils/util";
 export function mergesort(arr: number[]) {
     let algorithmSteps: number[][] = [];
     let firstRun = true;
+
+    algorithmSteps = [];
+    algorithmSteps = pushStepIntoArray(algorithmSteps, [...arr]);
+
     split(arr);
 
     function split(array: number[]) {
@@ -13,12 +17,6 @@ export function mergesort(arr: number[]) {
 
         if (array.length < 2) {
             return [array];
-        }
-
-        if (firstRun) {
-            algorithmSteps = [];
-            algorithmSteps = pushStepIntoArray(algorithmSteps, [...array]);
-            firstRun = false;
         }
 
         for (let size = 1; size < n; size *= 2) {
@@ -54,6 +52,7 @@ export function mergesort(arr: number[]) {
         buffer: number[]
     ) {
         let i = left;
+
         // Compare the two sub arrays and merge them in the sorted order
         while (left < leftLimit && right < rightLimit) {
             if (sorted[left] <= sorted[right]) {
@@ -62,10 +61,12 @@ export function mergesort(arr: number[]) {
                 buffer[i++] = sorted[right++];
             }
         }
+
         // If there are elements in the left sub arrray then add it to the result
         while (left < leftLimit) {
             buffer[i++] = sorted[left++];
         }
+
         // If there are elements in the right sub array then add it to the result
         while (right < rightLimit) {
             buffer[i++] = sorted[right++];
