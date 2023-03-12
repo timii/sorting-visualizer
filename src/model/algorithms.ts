@@ -2,6 +2,7 @@ import { bubblesort } from "@/sorts/bubblesort";
 import { heapsort } from "@/sorts/heapsort";
 import { mergesort } from "@/sorts/mergesort";
 import { quicksort } from "@/sorts/quicksort";
+import { selectionsort } from "@/sorts/selectionsort";
 import type { IAlgorithmComplexity } from "./interfaces";
 
 export const algorithms: IAlgorithmComplexity[] = [
@@ -36,6 +37,7 @@ export const algorithms: IAlgorithmComplexity[] = [
             {
                 name: "Selection Sort",
                 description: "testDesc5",
+                runSort: selectionsort,
             },
             {
                 name: "Insertion Sort",
