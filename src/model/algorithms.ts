@@ -1,4 +1,5 @@
 import { bubblesort } from "@/sorts/bubblesort";
+import { mergesort } from "@/sorts/mergesort";
 import { quicksort } from "@/sorts/quicksort";
 import type { IAlgorithmComplexity } from "./interfaces";
 
@@ -14,6 +15,7 @@ export const algorithms: IAlgorithmComplexity[] = [
             {
                 name: "Merge Sort",
                 description: "testDesc2",
+                runSort: mergesort,
             },
             {
                 name: "Heap Sort",

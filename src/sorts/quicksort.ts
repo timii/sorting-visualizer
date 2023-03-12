@@ -1,6 +1,6 @@
 import { pushStepIntoArray } from "@/utils/util";
 
-export function quicksort(arr: number[]) {
+export function quicksort(arr: number[]): number[][] {
     let algorithmSteps: number[][] = [];
     let firstRun = true;
     sorting(arr);

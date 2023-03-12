@@ -1,7 +1,6 @@
 import { pushStepIntoArray } from "@/utils/util";
 
 export function bubblesort(arr: number[]): number[][] {
-    console.log("bubblesort -> arr:", arr.toString());
     let arrayOfSteps = [];
     if (arr && arr.length > 2) {
         arrayOfSteps.push([...arr]);
