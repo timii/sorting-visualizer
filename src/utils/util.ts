@@ -44,9 +44,13 @@ export function getRandomNumber(min: number, max: number): number {
     return Math.floor(Math.random() * max) + min;
 }
 
-// Function that pushed a new step into a given array
+// Function that pushes a new array into a given array
 export function pushStepIntoArray(arr: number[][], step: number[]) {
-    if (!arr.find((el) => arraysEqual(el, step))) {
+    // Only push the new array if the same one doesn't exist already and there isn't already a sorted array in the array
+    if (
+        !arr.find((el) => arraysEqual(el, step)) &&
+        !arr.some((subArr) => isArraySorted(subArr))
+    ) {
         arr.push(step);
     }
     return arr;
@@ -58,4 +62,9 @@ function arraysEqual(a: number[], b: number[]) {
         if (a[i] !== b[i]) return false;
     }
     return true;
+}
+
+function isArraySorted(arr: number[]): boolean {
+    const limit = arr.length - 1;
+    return arr.every((_, i) => (i < limit ? arr[i] <= arr[i + 1] : true));
 }
