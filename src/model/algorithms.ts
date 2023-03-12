@@ -1,5 +1,6 @@
 import { bubblesort } from "@/sorts/bubblesort";
 import { heapsort } from "@/sorts/heapsort";
+import { insertionsort } from "@/sorts/insertionsort";
 import { mergesort } from "@/sorts/mergesort";
 import { quicksort } from "@/sorts/quicksort";
 import { selectionsort } from "@/sorts/selectionsort";
@@ -42,6 +43,7 @@ export const algorithms: IAlgorithmComplexity[] = [
             {
                 name: "Insertion Sort",
                 description: "testDesc6",
+                runSort: insertionsort,
             },
         ],
     },
