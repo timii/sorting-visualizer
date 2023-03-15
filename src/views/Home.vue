@@ -10,8 +10,7 @@ import HomeDiagram from "../components/HomeDiagram.vue";
                 <div class="welcome-text">
                     <div class="welcome-text-title">Sorting Visualizer</div>
                     <div class="welcome-text-subtitle">
-                        Visually learn different sorting algorithms and how they
-                        work
+                        Sorting algorithms visualized
                     </div>
                 </div>
                 <div class="diagram-container">
