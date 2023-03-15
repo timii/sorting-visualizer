@@ -18,21 +18,31 @@ import { algorithms } from "../model/algorithms.ts";
 </template>
 
 <style scoped>
+.algo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .algo-container:first-child {
     margin-bottom: 10px;
 }
 
 .algo-type {
-    font-size: 28px;
+    font-size: 32px;
     margin-bottom: 5px;
     text-transform: capitalize;
     color: var(--text-light);
+    background-color: var(--black-soft);
+    width: fit-content;
+    padding: 5px 15px;
+    border-radius: 15px;
 }
 
 .algo {
-    margin-left: 30px;
+    /* margin-left: 30px; */
     margin-bottom: 2px;
-    font-size: 20px;
+    font-size: 26px;
     display: flex;
     width: fit-content;
 }

@@ -13,14 +13,15 @@ import HomeDiagram from "../components/HomeDiagram.vue";
                         Sorting algorithms visualized
                     </div>
                 </div>
-                <div class="diagram-container">
-                    <HomeDiagram></HomeDiagram>
-                </div>
+            </div>
+            <div class="divider"></div>
+            <div class="sort-overview">
+                <AlgorithmList></AlgorithmList>
             </div>
         </div>
         <div class="divider"></div>
-        <div class="sort-overview">
-            <AlgorithmList></AlgorithmList>
+        <div class="diagram-container">
+            <HomeDiagram></HomeDiagram>
         </div>
     </main>
 </template>
@@ -30,19 +31,22 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     height: 100vh;
     gap: 25px;
 }
 
 main > div {
-    height: 60vh;
-    width: 45vw;
+    /* height: 60vh; */
+    /* width: 45vw; */
 }
 
 .divider {
-    width: 1px;
+    width: 500px;
     /* background-color: var(--white-mute); */
     background: var(--divider-gradient);
+    flex-shrink: 0;
+    height: 2px;
 }
 
 .introduction,
@@ -52,8 +56,15 @@ main > div {
     justify-content: center;
 }
 
+.sort-overview {
+    margin-top: 25px;
+    flex-direction: row;
+    gap: 30px;
+}
+
 .introduction {
-    margin-top: 200px;
+    /* margin-bottom: 50px; */
+    align-items: center;
 }
 
 .welcome-text {
@@ -64,11 +75,11 @@ main > div {
 .diagram-container {
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
+    align-items: center;
 }
 
 .welcome-text-title {
-    font-size: 48px;
+    font-size: 52px;
     font-weight: 500;
     color: var(--text-light);
     /* text-decoration-color: #dd6718; */
@@ -76,7 +87,17 @@ main > div {
 }
 
 .welcome-text-subtitle {
-    font-size: 18px;
+    font-size: 22px;
     color: var(--grey);
+}
+
+@media only screen and (max-width: 600px) {
+    .welcome-text-title {
+        font-size: 40px;
+    }
+
+    .welcome-text-subtitle {
+        font-size: 20px;
+    }
 }
 </style>

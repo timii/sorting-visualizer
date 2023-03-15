@@ -18,11 +18,11 @@
     --text-light: var(--orange);
 
     --divider-gradient: linear-gradient(
-        0deg,
+        90deg,
         var(--grey-transparent) 0%,
-        var(--grey-transparent) 20%,
+        var(--grey) 20%,
         var(--grey) 50%,
-        var(--grey-transparent) 80%,
+        var(--grey) 80%,
         var(--grey-transparent) 100%
     );
 

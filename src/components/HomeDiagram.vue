@@ -102,8 +102,7 @@ export default {
 
 <style scoped>
 .diagram {
-    width: 25vw;
-    max-width: 400px;
+    width: 400px;
     height: 20vh;
     background-color: var(--grey-darker);
     border-radius: 5px;
@@ -116,5 +115,11 @@ export default {
     height: 100%;
     align-items: flex-end;
     position: relative;
+}
+
+@media only screen and (max-width: 600px) {
+    .diagram {
+        width: 40vw;
+    }
 }
 </style>
