@@ -1,11 +1,9 @@
 # Sorting Visualizer
 
-## A variety of sorting algorithms visualized.
+This small project aims to visualize a few different sorting algorithms and to refresh my knowledge and learn about new sorting algorithms
+I haven't used yet. <sup>It's also pretty satisfying to watch</sup>
 
-This visualizer is a small project I made for fun to refresh my knowledge and learn about new sorting algorithms
-I haven't used yet. <sub>It's also pretty satisfying to watch</sub>
-
-Try it out here: (add link after deployed)
+Try it out here: [timii.github.io/sorting-visualizer/](https://timii.github.io/sorting-visualizer/)
 
 ## Currently available algorithms:
 
