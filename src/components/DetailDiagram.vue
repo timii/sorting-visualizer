@@ -288,4 +288,10 @@ export default {
 .sliders {
     height: 60px;
 }
+
+@media only screen and (max-width: 600px) {
+    .diagram {
+        width: 70vw;
+    }
+}
 </style>

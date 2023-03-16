@@ -18,8 +18,8 @@ import HomeDiagram from "../components/HomeDiagram.vue";
             <div class="sort-overview">
                 <AlgorithmList></AlgorithmList>
             </div>
+            <div class="divider"></div>
         </div>
-        <div class="divider"></div>
         <div class="diagram-container">
             <HomeDiagram></HomeDiagram>
         </div>
@@ -29,24 +29,20 @@ import HomeDiagram from "../components/HomeDiagram.vue";
 <style scoped>
 main {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     flex-direction: column;
     height: 100vh;
-    gap: 25px;
-}
-
-main > div {
-    /* height: 60vh; */
-    /* width: 45vw; */
+    overflow: hidden;
 }
 
 .divider {
     width: 500px;
-    /* background-color: var(--white-mute); */
     background: var(--divider-gradient);
     flex-shrink: 0;
     height: 2px;
+    margin-top: 25px;
+    margin-bottom: 25px;
 }
 
 .introduction,
@@ -57,18 +53,16 @@ main > div {
 }
 
 .sort-overview {
-    margin-top: 25px;
     flex-direction: row;
     gap: 30px;
 }
 
 .introduction {
-    /* margin-bottom: 50px; */
+    margin-top: 25vh;
     align-items: center;
 }
 
 .welcome-text {
-    margin-bottom: 25px;
 }
 
 .welcome-text,
@@ -82,8 +76,6 @@ main > div {
     font-size: 52px;
     font-weight: 500;
     color: var(--text-light);
-    /* text-decoration-color: #dd6718; */
-    /* text-decoration-line: underline; */
 }
 
 .welcome-text-subtitle {
@@ -93,7 +85,25 @@ main > div {
 
 @media only screen and (max-width: 600px) {
     .welcome-text-title {
-        font-size: 40px;
+        font-size: 48px;
+    }
+
+    .divider {
+        width: 400px;
+    }
+
+    .sort-overview {
+        gap: 15px;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .welcome-text-title {
+        font-size: 42px;
+    }
+
+    .divider {
+        width: 300px;
     }
 
     .welcome-text-subtitle {

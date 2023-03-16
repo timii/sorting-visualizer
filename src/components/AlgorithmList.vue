@@ -71,4 +71,25 @@ import { algorithms } from "../model/algorithms.ts";
     transform-origin: bottom left;
     transform: scaleX(1);
 }
+
+@media only screen and (max-width: 600px) {
+    .algo-type {
+        font-size: 30px;
+    }
+
+    .algo {
+        font-size: 24px;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .algo-type {
+        font-size: 28px;
+        padding: 5px 10px;
+    }
+
+    .algo {
+        font-size: 22px;
+    }
+}
 </style>
