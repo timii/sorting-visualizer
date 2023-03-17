@@ -291,7 +291,7 @@ export default {
 
 @media only screen and (max-width: 600px) {
     .diagram {
-        width: 70vw;
+        padding: 25px 10px;
     }
 }
 </style>

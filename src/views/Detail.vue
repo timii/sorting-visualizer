@@ -105,4 +105,25 @@ section {
     left: 80px;
     top: 20px;
 }
+
+@media only screen and (max-width: 1000px) {
+    .diagram-container {
+        width: 95vw;
+    }
+
+    .back-container {
+        left: 40px;
+        top: 15px;
+    }
+
+    .detail-title {
+        font-size: 34px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .back-container {
+        left: 15px;
+    }
+}
 </style>
