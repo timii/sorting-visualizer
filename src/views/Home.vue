@@ -85,7 +85,7 @@ main {
 
 @media only screen and (max-width: 600px) {
     .welcome-text-title {
-        font-size: 48px;
+        font-size: 46px;
     }
 
     .divider {
@@ -99,7 +99,7 @@ main {
 
 @media only screen and (max-width: 400px) {
     .welcome-text-title {
-        font-size: 42px;
+        font-size: 40px;
     }
 
     .divider {

@@ -107,6 +107,7 @@ export default {
     background-color: var(--grey-darker);
     border-radius: 5px;
     padding: 25px;
+    margin-bottom: 15px;
 }
 
 .bars {
@@ -119,7 +120,7 @@ export default {
 
 @media only screen and (max-width: 600px) {
     .diagram {
-        width: 40vw;
+        width: 70vw;
     }
 }
 </style>
