@@ -9,21 +9,27 @@ export default {
     props: {
         label: {
             type: String,
+            required: true,
         },
         amount: {
             type: Number,
+            required: true,
         },
         callback: {
             type: Function,
+            required: true,
         },
         min: {
             type: Number,
+            required: true,
         },
         max: {
             type: Number,
+            required: true,
         },
         step: {
             type: Number,
+            required: true,
         },
         amountUnit: {
             type: String,
@@ -32,8 +38,8 @@ export default {
 
     methods: {
         valueChanged() {
-            // console.log("value changes:", this.currentValue);
-            this.callback(parseFloat(this.currentValue));
+            // Parse string into number to return
+            this.callback(Number(this.currentValue));
         },
     },
 
@@ -46,13 +52,13 @@ export default {
 <template>
     <div class="slider-container">
         <span class="slider-label"
-            >{{ this.label }}: {{ this.amount }}{{ this.amountUnit }}</span
+            >{{ label }}: {{ amount }}{{ amountUnit }}</span
         >
         <input
             type="range"
-            :min="this.min"
-            :max="this.max"
-            :step="this.step"
+            :min="min"
+            :max="max"
+            :step="step"
             class="slider"
             id="slider"
             @change="valueChanged"

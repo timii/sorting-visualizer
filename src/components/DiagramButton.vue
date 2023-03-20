@@ -9,12 +9,14 @@ export default {
     props: {
         label: {
             type: String,
+            required: true,
         },
         secondaryLabel: {
             type: String,
         },
         callback: {
             type: Function,
+            required: true,
         },
         secondaryCallback: {
             type: Function,
@@ -29,7 +31,7 @@ export default {
 
     // watch prop to call function when it gets changed
     watch: {
-        isRunningProp: function (newValue, oldValue) {
+        isRunningProp: function (newValue) {
             this.isRunning = newValue;
         },
     },
@@ -37,7 +39,12 @@ export default {
     methods: {
         buttonWithSecondaryLabelClicked() {
             if (!this.disabled) {
-                this.isRunning ? this.secondaryCallback() : this.callback();
+                // avoid error by checking again if secondaryCallback is defined
+                this.isRunning
+                    ? this.secondaryCallback
+                        ? this.secondaryCallback()
+                        : this.callback()
+                    : this.callback();
                 this.isRunning = !this.isRunning;
             }
         },
@@ -56,18 +63,18 @@ export default {
 <template>
     <!-- button label and callback change on click -->
     <div
-        v-if="this.secondaryLabel && this.secondaryCallback"
+        v-if="secondaryLabel && secondaryCallback"
         class="btn-container"
-        :class="{ disabled: this.disabled }"
+        :class="{ disabled: disabled }"
         @click="buttonWithSecondaryLabelClicked"
     >
         <img
             class="btn-icon"
-            :src="'src/assets/' + this.currentLabel() + '.png'"
-            :alt="this.currentLabel()"
+            :src="'src/assets/' + currentLabel() + '.png'"
+            :alt="currentLabel()"
         />
-        <button class="btn start" :disabled="this.disabled">
-            {{ this.currentLabel() }}
+        <button class="btn start" :disabled="disabled">
+            {{ currentLabel() }}
         </button>
     </div>
 
@@ -75,16 +82,16 @@ export default {
     <div
         v-else
         class="btn-container"
-        @click="this.callback()"
-        :class="{ disabled: this.disabled }"
+        @click="callback()"
+        :class="{ disabled: disabled }"
     >
         <img
             class="btn-icon"
-            :src="'src/assets/' + this.label + '.png'"
-            :alt="this.label"
+            :src="'src/assets/' + label + '.png'"
+            :alt="label"
         />
         <button class="btn start">
-            {{ this.label }}
+            {{ label }}
         </button>
     </div>
 </template>

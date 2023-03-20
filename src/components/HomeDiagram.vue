@@ -3,12 +3,12 @@ import {
     createArray,
     swapRandomElements,
     getRandomNumber,
-} from "../utils/util.ts";
+} from "../utils/util";
 export default {
     data() {
         return {
             startArray: createArray(10),
-            intervall: null,
+            intervall: undefined as number | undefined,
             randomEl1: 2,
             randomEl2: 4,
             highestNum: 0,
@@ -78,7 +78,6 @@ export default {
         }, 2000);
     },
     unmounted() {
-        console.log("unmounted");
         clearInterval(this.intervall);
     },
 };
@@ -90,6 +89,7 @@ export default {
             <div
                 class="bar"
                 v-for="(number, i) in startArray"
+                :key="i"
                 :style="{
                     height: getHeightAsPercentage(number) + '%',
                     width: barWidth() + '%',

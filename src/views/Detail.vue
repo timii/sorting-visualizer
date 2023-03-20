@@ -1,6 +1,7 @@
 <script lang="ts">
-import { algorithms } from "../model/algorithms.ts";
-import { capitalizeAllFirstLetters } from "../utils/util.ts";
+import { algorithms } from "../model/algorithms";
+import { capitalizeAllFirstLetters } from "../utils/util";
+import type { IAlgorithm } from "../model/interfaces";
 import DetailDiagram from "../components/DetailDiagram.vue";
 import BackButton from "../components/BackButton.vue";
 import DetailDescription from "../components/DetailDescription.vue";
@@ -9,24 +10,28 @@ export default {
     components: {
         DetailDiagram,
         BackButton,
-        DetailDescription,
+        // DetailDescription,
     },
     computed: {
         // find current algorithm using its name
-        currentAlgorithm() {
-            const pathVariable = this.$route.params.name.split("-").join(" ");
-            const name = capitalizeAllFirstLetters(pathVariable);
+        currentAlgorithm(): IAlgorithm {
+            const pathVariable = this.$route.params.name as string;
+            const pathSortName = pathVariable.split("-").join(" ");
+            const name = capitalizeAllFirstLetters(pathSortName);
             console.log("name:", `'${name}'`, algorithms);
             let currentAlgo;
             for (let i = 0; i < algorithms.length; i++) {
                 const found = algorithms[i].algoList.find(
-                    (a) => a.name === name
+                    (a: IAlgorithm) => a.name === name
                 );
                 if (found) {
                     currentAlgo = found;
                     break;
                 }
             }
+
+            // return first algorithm if it couldn't find any algorithm that matches
+            if (!currentAlgo) currentAlgo = algorithms[1].algoList[1];
 
             console.log("currentAlgo:", currentAlgo);
             return currentAlgo;

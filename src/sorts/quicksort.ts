@@ -1,45 +1,45 @@
 import { pushStepIntoArray } from "@/utils/util";
 
 export function quicksort(arr: number[]): number[][] {
-    let algorithmSteps: number[][] = [];
+  let algorithmSteps: number[][] = [];
 
-    algorithmSteps = [];
-    algorithmSteps = pushStepIntoArray(algorithmSteps, [...arr]);
+  algorithmSteps = [];
+  algorithmSteps = pushStepIntoArray(algorithmSteps, [...arr]);
 
-    sorting(arr);
+  sorting(arr);
 
-    function sorting(array: number[], left = 0, right = arr.length - 1) {
-        if (left >= right) {
-            return;
-        }
-
-        let pivotIndex = partition(array, left, right);
-        sorting(array, left, pivotIndex - 1);
-        sorting(array, pivotIndex + 1, right);
+  function sorting(array: number[], left = 0, right = arr.length - 1) {
+    if (left >= right) {
+      return;
     }
 
-    function partition(arr: number[], left: number, right: number) {
-        let pivotValue = arr[right];
-        let partitionIndex = left;
+    const pivotIndex = partition(array, left, right);
+    sorting(array, left, pivotIndex - 1);
+    sorting(array, pivotIndex + 1, right);
+  }
 
-        for (let i = left; i < right; i++) {
-            if (arr[i] < pivotValue) {
-                swap(arr, i, partitionIndex);
-                algorithmSteps = pushStepIntoArray(algorithmSteps, [...arr]);
-                partitionIndex++;
-            }
-        }
+  function partition(arr: number[], left: number, right: number) {
+    const pivotValue = arr[right];
+    let partitionIndex = left;
 
-        swap(arr, right, partitionIndex);
+    for (let i = left; i < right; i++) {
+      if (arr[i] < pivotValue) {
+        swap(arr, i, partitionIndex);
         algorithmSteps = pushStepIntoArray(algorithmSteps, [...arr]);
-        return partitionIndex;
+        partitionIndex++;
+      }
     }
 
-    function swap(arr: number[], first: number, second: number) {
-        let temp = arr[first];
-        arr[first] = arr[second];
-        arr[second] = temp;
-    }
+    swap(arr, right, partitionIndex);
+    algorithmSteps = pushStepIntoArray(algorithmSteps, [...arr]);
+    return partitionIndex;
+  }
 
-    return algorithmSteps;
+  function swap(arr: number[], first: number, second: number) {
+    const temp = arr[first];
+    arr[first] = arr[second];
+    arr[second] = temp;
+  }
+
+  return algorithmSteps;
 }

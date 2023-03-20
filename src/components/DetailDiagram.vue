@@ -1,9 +1,5 @@
 <script lang="ts">
-import {
-    createArray,
-    swapRandomElements,
-    getRandomNumber,
-} from "../utils/util.ts";
+import { createArray } from "../utils/util";
 import DiagramButton from "../components/DiagramButton.vue";
 import DiagramSlider from "../components/DiagramSlider.vue";
 
@@ -14,7 +10,7 @@ export default {
             algorithmSteps: [],
             currentStep: [],
             currentStepIndex: 0,
-            intervall: null,
+            intervall: undefined as number | undefined,
             randomEl1: 2,
             randomEl2: 4,
             highestNum: 0,
@@ -91,7 +87,6 @@ export default {
 
         // handle start button click
         startClicked() {
-            console.log("start clicked");
             this.isRunning = true;
 
             // immediately show first step and then after each intervall
@@ -104,7 +99,7 @@ export default {
                 if (this.hasAnotherStep()) {
                     this.setNextAlgorithmStep();
                 } else {
-                    this.intervall = clearInterval(this.intervall);
+                    clearInterval(this.intervall);
                     this.isRunning = false;
                     this.isDoneSorting = true;
                 }
@@ -113,34 +108,35 @@ export default {
 
         // handle pause button click
         pauseClicked() {
-            console.log("stop clicked");
             this.isRunning = false;
-            this.intervall = clearInterval(this.intervall);
+            clearInterval(this.intervall);
         },
 
         // handle shuffle button click
         shuffleClicked() {
-            console.log("shuffle clicked");
             this.isRunning = false;
             this.isDoneSorting = false;
 
-            this.intervall = clearInterval(this.intervall);
+            clearInterval(this.intervall);
             this.startArray = createArray(this.amountOfElements);
-            this.algorithmSteps = this.algorithmFunction(this.startArray);
+            if (this.algorithmFunction) {
+                this.algorithmSteps = this.algorithmFunction(this.startArray);
+            }
             this.currentStep = this.algorithmSteps[0];
             this.currentStepIndex = 1;
         },
 
         // handle value change for element amount slider
-        elementsAmountChanged(value) {
-            console.log("amount change -> value:", value, typeof value);
+        elementsAmountChanged(value: number) {
             this.amountOfElements = value;
             this.isRunning = false;
             this.isDoneSorting = false;
 
-            this.intervall = clearInterval(this.intervall);
+            clearInterval(this.intervall);
             this.startArray = createArray(this.amountOfElements);
-            this.algorithmSteps = this.algorithmFunction(this.startArray);
+            if (this.algorithmFunction) {
+                this.algorithmSteps = this.algorithmFunction(this.startArray);
+            }
             this.currentStep = this.algorithmSteps[0];
             this.currentStepIndex = 1;
 
@@ -148,11 +144,11 @@ export default {
         },
 
         // handle value change for speed slider
-        sortSpeedChanged(value) {
-            console.log("speed change -> value:", value, typeof value);
+        sortSpeedChanged(value: number) {
+            console.log("value:", value, typeof value);
             this.sortingSpeed = value;
 
-            this.intervall = clearInterval(this.intervall);
+            clearInterval(this.intervall);
 
             // create new intervall with the new speed and run keep running if its already sorting
             if (this.isRunning) {
@@ -161,7 +157,7 @@ export default {
                         this.setNextAlgorithmStep();
                         this.isRunning = true;
                     } else {
-                        this.intervall = clearInterval(this.intervall);
+                        clearInterval(this.intervall);
                         this.isRunning = false;
                         this.isDoneSorting = true;
                     }
@@ -175,7 +171,9 @@ export default {
     // ----
 
     mounted() {
-        this.algorithmSteps = this.algorithmFunction(this.startArray);
+        if (this.algorithmFunction) {
+            this.algorithmSteps = this.algorithmFunction(this.startArray);
+        }
         this.currentStep = this.algorithmSteps[0];
         this.currentStepIndex = 1;
         this.amountOfElements = this.startArray.length;
@@ -183,7 +181,9 @@ export default {
     },
 
     unmounted() {
-        this.intervall = clearInterval(this.intervall);
+        if (this.intervall) {
+            clearInterval(this.intervall);
+        }
     },
 };
 </script>
@@ -195,6 +195,7 @@ export default {
                 <div
                     class="bar"
                     v-for="(number, i) in currentStep"
+                    :key="i"
                     :style="{
                         height: getHeightAsPercentage(number) + '%',
                         width: barWidth() + '%',
@@ -210,8 +211,8 @@ export default {
                     :secondaryLabel="'pause'"
                     :callback="startClicked"
                     :secondaryCallback="pauseClicked"
-                    :isRunningProp="this.isRunning"
-                    :disabled="this.isDoneSorting"
+                    :isRunningProp="isRunning"
+                    :disabled="isDoneSorting"
                 ></DiagramButton>
                 <DiagramButton
                     :label="'shuffle'"

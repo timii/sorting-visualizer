@@ -1,13 +1,17 @@
 <script setup lang="ts">
-import { algorithms } from "../model/algorithms.ts";
+import { algorithms } from "../model/algorithms";
 </script>
 
 <template>
-    <div v-for="complexity in algorithms" class="algo-container">
+    <div
+        v-for="complexity in algorithms"
+        class="algo-container"
+        :key="complexity.name"
+    >
         <div class="algo-type">
             {{ complexity.name }}
         </div>
-        <div v-for="alg in complexity.algoList" class="algo">
+        <div v-for="alg in complexity.algoList" class="algo" :key="alg.name">
             <router-link
                 :to="'/' + alg.name.toLowerCase().split(' ').join('-')"
             >

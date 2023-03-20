@@ -12,9 +12,7 @@ export default {
 </script>
 
 <template>
-    <div class="description-container">
-        {{ this.name }} - {{ this.description }}
-    </div>
+    <div class="description-container">{{ name }} - {{ description }}</div>
 </template>
 
 <style scroped></style>
