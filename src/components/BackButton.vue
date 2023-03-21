@@ -1,11 +1,17 @@
 <script lang="ts">
-export default {};
+export default {
+    data() {
+        return {
+            publicPath: process.env.BASE_URL,
+        };
+    },
+};
 </script>
 
 <template>
     <div class="button-container">
         <router-link :to="'/'">
-            <img :src="'src/assets/back.png'" />
+            <img :src="`${publicPath}back.png`" />
         </router-link>
     </div>
 </template>
