@@ -3,7 +3,7 @@ export default {
     data() {
         return {
             isRunning: true,
-            publicPath: process.env.BASE_URL,
+            // publicPath: process.env.BASE_URL,
         };
     },
 
@@ -71,7 +71,7 @@ export default {
     >
         <img
             class="btn-icon"
-            :src="`${publicPath}${currentLabel()}.png`"
+            :src="`${currentLabel()}.png`"
             :alt="currentLabel()"
         />
         <button class="btn start" :disabled="disabled">
@@ -86,7 +86,7 @@ export default {
         @click="callback()"
         :class="{ disabled: disabled }"
     >
-        <img class="btn-icon" :src="`${publicPath}${label}.png`" :alt="label" />
+        <img class="btn-icon" :src="`${label}.png`" :alt="label" />
         <button class="btn start">
             {{ label }}
         </button>

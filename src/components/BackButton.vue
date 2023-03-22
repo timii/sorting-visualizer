@@ -2,7 +2,7 @@
 export default {
     data() {
         return {
-            publicPath: process.env.BASE_URL,
+            // publicPath: process.env.BASE_URL,
         };
     },
 };
@@ -11,7 +11,7 @@ export default {
 <template>
     <div class="button-container">
         <router-link :to="'/'">
-            <img :src="`${publicPath}back.png`" />
+            <img :src="'back.png'" />
         </router-link>
     </div>
 </template>
