@@ -145,7 +145,6 @@ export default {
 
         // handle value change for speed slider
         sortSpeedChanged(value: number) {
-            console.log("value:", value, typeof value);
             this.sortingSpeed = value;
 
             clearInterval(this.intervall);

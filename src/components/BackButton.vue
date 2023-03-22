@@ -1,9 +1,7 @@
 <script lang="ts">
 export default {
     data() {
-        return {
-            // publicPath: process.env.BASE_URL,
-        };
+        return {};
     },
 };
 </script>

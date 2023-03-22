@@ -18,7 +18,6 @@ export default {
             const pathVariable = this.$route.params.name as string;
             const pathSortName = pathVariable.split("-").join(" ");
             const name = capitalizeAllFirstLetters(pathSortName);
-            console.log("name:", `'${name}'`, algorithms);
             let currentAlgo;
             for (let i = 0; i < algorithms.length; i++) {
                 const found = algorithms[i].algoList.find(
@@ -33,7 +32,6 @@ export default {
             // return first algorithm if it couldn't find any algorithm that matches
             if (!currentAlgo) currentAlgo = algorithms[1].algoList[1];
 
-            console.log("currentAlgo:", currentAlgo);
             return currentAlgo;
         },
     },

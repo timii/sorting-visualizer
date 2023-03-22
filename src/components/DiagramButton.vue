@@ -3,7 +3,6 @@ export default {
     data() {
         return {
             isRunning: true,
-            // publicPath: process.env.BASE_URL,
         };
     },
 
