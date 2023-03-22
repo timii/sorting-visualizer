@@ -68,7 +68,7 @@ export default {
         this.highestNum = Math.max(...this.startArray);
         this.setTwoRandomElements();
         // set intervall to continuously swap two random elements
-        this.intervall = setInterval(() => {
+        this.intervall = window.setInterval(() => {
             this.startArray = swapRandomElements(
                 this.startArray,
                 this.randomEl1,

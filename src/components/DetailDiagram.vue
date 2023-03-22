@@ -95,7 +95,7 @@ export default {
             }
 
             // set intervall to continuously go through each algorithm step
-            this.intervall = setInterval(() => {
+            this.intervall = window.setInterval(() => {
                 if (this.hasAnotherStep()) {
                     this.setNextAlgorithmStep();
                 } else {
@@ -152,7 +152,7 @@ export default {
 
             // create new intervall with the new speed and run keep running if its already sorting
             if (this.isRunning) {
-                this.intervall = setInterval(() => {
+                this.intervall = window.setInterval(() => {
                     if (this.hasAnotherStep()) {
                         this.setNextAlgorithmStep();
                         this.isRunning = true;
