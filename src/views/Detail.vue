@@ -48,6 +48,7 @@ export default {
             <div class="diagram-container">
                 <DetailDiagram
                     :algorithmFunction="currentAlgorithm.runSort"
+                    :limitElements="currentAlgorithm.name === 'Bogo Sort'"
                 ></DetailDiagram>
             </div>
             <!-- <div class="arrows-down-container"> -->

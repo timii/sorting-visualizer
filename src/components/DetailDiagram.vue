@@ -25,6 +25,9 @@ export default {
         algorithmFunction: {
             type: Function,
         },
+        limitElements: {
+            type: Boolean,
+        },
     },
 
     // ----
@@ -170,9 +173,16 @@ export default {
     // ----
 
     mounted() {
+        // Limit amount of elements to 5 for algorithms with a horrible performance
+        if (this.limitElements) {
+            this.amountOfElements = 5;
+            this.startArray = createArray(this.amountOfElements);
+        }
+
         if (this.algorithmFunction) {
             this.algorithmSteps = this.algorithmFunction(this.startArray);
         }
+
         this.currentStep = this.algorithmSteps[0];
         this.currentStepIndex = 1;
         this.amountOfElements = this.startArray.length;
@@ -220,6 +230,7 @@ export default {
             </div>
             <div class="button-row sliders">
                 <DiagramSlider
+                    v-if="!limitElements"
                     :label="'Elements'"
                     :amount="amountOfElements"
                     :callback="elementsAmountChanged"
@@ -236,6 +247,10 @@ export default {
                     :step="1"
                     :amountUnit="'%'"
                 ></DiagramSlider>
+            </div>
+            <div v-if="limitElements" class="runtime-hint">
+                Limit elements to 5 for this algorithm to avoid crashing because
+                of horrible performance
             </div>
         </div>
     </div>
@@ -289,9 +304,21 @@ export default {
     height: 60px;
 }
 
+.runtime-hint {
+    font-size: 14px;
+    color: var(--grey);
+    text-align: center;
+}
+
 @media only screen and (max-width: 600px) {
     .diagram {
         padding: 25px 10px;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .runtime-hint {
+        font-size: 12px;
     }
 }
 </style>
