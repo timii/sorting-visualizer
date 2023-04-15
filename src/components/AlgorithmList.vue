@@ -11,12 +11,18 @@ import { algorithms } from "../model/algorithms";
         <div class="algo-type">
             {{ complexity.name }}
         </div>
-        <div v-for="alg in complexity.algoList" class="algo" :key="alg.name">
-            <router-link
-                :to="'/' + alg.name.toLowerCase().split(' ').join('-')"
+        <div class="algo-list">
+            <div
+                v-for="alg in complexity.algoList"
+                class="algo"
+                :key="alg.name"
             >
-                {{ alg.name }}
-            </router-link>
+                <router-link
+                    :to="'/' + alg.name.toLowerCase().split(' ').join('-')"
+                >
+                    {{ alg.name }}
+                </router-link>
+            </div>
         </div>
     </div>
 </template>

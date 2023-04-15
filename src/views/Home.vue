@@ -41,8 +41,7 @@ main {
     background: var(--divider-gradient);
     flex-shrink: 0;
     height: 2px;
-    margin-top: 25px;
-    margin-bottom: 25px;
+    margin: 25px 0;
 }
 
 .introduction,
@@ -76,6 +75,7 @@ main {
     font-size: 52px;
     font-weight: 500;
     color: var(--text-light);
+    text-align: center;
 }
 
 .welcome-text-subtitle {
@@ -84,16 +84,26 @@ main {
 }
 
 @media only screen and (max-width: 600px) {
+    .introduction {
+        margin-top: 4vh;
+    }
+
     .welcome-text-title {
         font-size: 46px;
     }
 
     .divider {
         width: 400px;
+        margin: 15px 0;
     }
 
     .sort-overview {
+        flex-direction: column;
         gap: 15px;
+    }
+
+    .diagram-container {
+        margin-bottom: 30px;
     }
 }
 
