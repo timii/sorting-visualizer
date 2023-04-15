@@ -63,7 +63,7 @@ function arraysEqual(a: number[], b: number[]) {
     return true;
 }
 
-function isArraySorted(arr: number[]): boolean {
+export function isArraySorted(arr: number[]): boolean {
     const limit = arr.length - 1;
     return arr.every((_, i) => (i < limit ? arr[i] <= arr[i + 1] : true));
 }
