@@ -13,3 +13,14 @@ Try it out here: [timii.github.io/sorting-visualizer/](https://timii.github.io/s
 -   Bubble Sort
 -   Selection Sort
 -   Insertion Sort
+
+## Build it yourself
+
+```shell
+git clone https://github.com/timii/sorting-visualizer.git
+cd sorting-visualizer
+```
+
+Open index.html in your web browser to launch the visualizer.
+
+Explore, experiment, and learn about pathfinding algorithms!
