@@ -23,4 +23,4 @@ cd sorting-visualizer
 
 Open index.html in your web browser to launch the visualizer.
 
-Explore, experiment, and learn about pathfinding algorithms!
+Explore, experiment, and learn about sorting algorithms!
